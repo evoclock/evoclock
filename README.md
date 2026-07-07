@@ -1,10 +1,4 @@
-## Hi — I run small A/B tests on LLM behavior.
-
-The current series asks whether reasoning "operating manuals" (in the
-prompt-optimization / OPRO family) change what a model *catches*, or
-just how plainly it shows its work. Model held constant, manual held
-constant, the battery held constant — only the arm that reads the
-manual varies.
+## Hi, I got curious then got a DGX Spark, then started testing things other than the usual metrics for LLMs.
 
 ![status: ongoing series](https://img.shields.io/badge/benchmark-series%20in%20progress-0f6e69?style=flat-square)
 
