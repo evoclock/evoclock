@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="assets/readme-banner.png" alt="Origami bird attractor banner" width="100%">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme-banner-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/readme-banner.png">
+    <img src="assets/readme-banner.png" alt="Origami bird attractor banner" width="100%">
+  </picture>
 </p>
 
 ML/AI engineer. Currently evaluating and hardening local LLMs on a
