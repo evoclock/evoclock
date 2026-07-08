@@ -239,6 +239,20 @@ for current work, see "Working on today" above.
   the model *converge*), pass@k (any correct in k, so can the model
   *ever* do it), and pass^k (all k correct, so does the model do it
   *reliably*). Self-repair is a separate axis.
+- **CRUXEval-O supplement (A/B, 184 problems, in progress).** A
+  larger CRUXEval-O set drawn from the 700 rows not in the original
+  100, stratified by SHARP common-mode failure detectors so it
+  separates artifact from genuine fails. Same 7 local models, same
+  184 problems in both phases; only the prompt + parse + system
+  message differ. Phase 1 is **bare** (v1 prompt, no system message,
+  no `_trim`); Phase 2 is **mitigated** (v3 prompt, per-model
+  system message, `_trim` on). The mitigation is the lightest tier
+  (harness only, no hooks, no fine-tuning) and targets the
+  prompt- and parser-artifact modes only. Genuine tracing errors
+  and inconsistency are out of scope. Preliminary: a first pass
+  to decide whether more focused mitigations are warranted.
+  Mitigation record (GLM-5.2) and supplement-run protocol are the
+  auditable artifacts.
 - **CRUXEval-O** (100-problem subset, not classified by difficulty),
   code-reasoning *output* prediction. Given a Python function and an
   input, predict the exact return value. Step-by-step code reasoning
