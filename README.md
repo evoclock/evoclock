@@ -225,6 +225,55 @@ re-derivation has room to flip an answer.
 </details>
 
 <details>
+<summary><strong>CRUXEval-O 100-problem run (7 local models), published</strong></summary>
+
+First published instance of the reviewer-seat battery. 100 CRUXEval-O
+problems (a subset, not classified by difficulty), 7 local models,
+Python output prediction, deterministic grading via
+`ast.literal_eval`. Final scores: super-120b 98, gemma-4-26b 98,
+qwen3.6-35b 97, nemotron-30b 96, ornith-fp8 94, holo-3.1-35b 88,
+granite-small 81. All 7 cards clean: 0 prompt/parse/harness
+exclusions.
+
+The 18-point spread across 7 models is narrower than the raw
+numbers suggest. Most of the headroom gap was prompt/parse artifact,
+not model inability. The published writeup walks through every
+fix: gemma's code-reproduction recovery (80 → 98), qwen's
+metavariable + example-answer + reasoning-bleed fix chain (84 → 97
+across four prompt variants), the parse fix that recovered
+trailing-junk false-fails across qwen and ornith, and the
+targeted reruns on reasoning-bleed fails for ornith and holo. Read
+the gist for the per-problem verdict and the issue log.
+
+**Failure-mode distribution (post-clean, all genuine fails).**
+Across the 7 models, 48 fail-pairs hit 28 distinct problems. 43
+common (≥2 models hit the same problem, 90% of the pairs); 5
+unique (1 model only, 10%). The common/unique split is the
+substantive finding, not the scoreboard: a battery that surfaces
+mostly common fails is testing *failure modes*, not *model
+idiosyncrasies*. The supplement (Working on today above)
+over-samples the high-frequency common modes to push this
+further.
+
+The dominant mode is string-transform errors: off-by-char (10
+pairs), truncation (5), case (3), short-string overproduce (2),
+other (2) = 22 of 48 pairs (~46%). Container-shape errors are
+the second cluster (~23%). The single hardest mode is
+`dict_string` (4 models fail the one problem, s33), and only 1
+more `dict_string` problem exists in the remaining 700, a hard
+anchor that cannot be grown as a stratum. Numeric errors are
+entirely unique to granite, confirming the weighting rule:
+large pool, single-model, rare, so over-sampling numeric is
+noise.
+
+The data is what seeded the supplement (Regime B stratification)
+and the failure-mode-driven analysis in
+`benchmark-failure-modes.md`.
+[7-model scoreboard ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/5c294ce71af4d67c8d7580a83a4ab512/raw/cruxeval-o-results.html)
+
+</details>
+
+<details>
 <summary><strong>What I'm running on the machine (as of 2026-07-08)</strong></summary>
 
 A dated snapshot of the daily-driver eval cycle. This will rotate;
@@ -241,6 +290,18 @@ for current work, see "Working on today" above.
   the model *converge*), pass@k (any correct in k, so can the model
   *ever* do it), and pass^k (all k correct, so does the model do it
   *reliably*). Self-repair is a separate axis.
+- **CRUXEval-O supplement (A/B, 184 problems, in progress).** A
+  larger CRUXEval-O set drawn from the 700 rows not in the original
+  100, stratified by SHARP common-mode failure detectors so it
+  separates artifact from genuine fails. Same 7 local models, same
+  184 problems in both phases; only the prompt + parse + system
+  message differ. Phase 1 is **bare** (v1 prompt, no system message,
+  no `_trim`); Phase 2 is **mitigated** (v3 prompt, per-model
+  system message, `_trim` on). The mitigation is the lightest tier
+  (harness only, no hooks, no fine-tuning) and targets the
+  prompt- and parser-artifact modes only. Genuine tracing errors
+  and inconsistency are out of scope. Preliminary: a first pass
+  to decide whether more focused mitigations are warranted.
 - **CRUXEval-O** (100-problem subset, not classified by difficulty),
   code-reasoning *output* prediction. Given a Python function and an
   input, predict the exact return value. Step-by-step code reasoning
