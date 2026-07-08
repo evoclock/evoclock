@@ -27,6 +27,7 @@ that ties both together.
   <tr>
     <td valign="top">
 
+- A knowledge-base layer for LLM-on-corpus workflows. Drop a paper corpus in, point an agent at it, get principled routing instead of "embed and pray"
 - Read-only MCP query surface, keeps the agent from mutating primitives
 - Schema-quarantined ingest with reasoned per-file validation
 - Community-aware routing via a Bayesian degree-corrected SBM (proprietary implementation, reimplemented from the original papers)
@@ -36,17 +37,17 @@ that ties both together.
 </td>
     <td valign="top">
 
-- Multi-provider LLM workflow orchestrator
-- Reproducibility and audit trails for research-lab GenAI tooling
+- A multi-provider LLM workflow orchestrator for research pipelines that need to be reproducible and auditable end-to-end
+- Reproducibility and audit trails on top of GenAI tooling for the lab
 - Coordinated retries, per-step audit, lane-level concurrency
 
 </td>
     <td valign="top">
 
-- Hardened agent runtime
+- A hardened agent runtime for executing LLM-generated code in a sandboxed, auditable container
 - Containerised end-to-end with declarative permissioning
 - Layered sanitisation, MCP server isolation, audit logging
-- Permissioned, auditable execution for untrusted code paths
+- Permissioned execution for untrusted code paths
 
 </td>
   </tr>
