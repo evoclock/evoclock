@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/readme-banner.png" alt="Origami bird attractor banner" width="100%">
+</p>
+
 ML/AI engineer. Currently evaluating and hardening local LLMs on a
 DGX Spark at home. Less interested in which model is generally
 smartest, more in which specific capabilities hold up under the
