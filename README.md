@@ -54,19 +54,20 @@ that ties both together.
 
 ## Working on today
 
-- **Local-model port of the capability-grade battery.** The Run 3
-  capability-grade screen saturated at Sonnet 5 (control / sham / real
-  manual all 9/9 at every difficulty tier; the calibration gate fired,
-  so by the pre-registered rule the task family can't measure a
-  capability effect at Sonnet tier). The recommended next step from
-  Run 3 is a weaker base model that fails these single-turn traps
-  ~30-50% of the time, reusing the same battery and sham design
-  unchanged. Same three-arm battery, same pre-registered hypotheses,
-  same >=15pp pooled threshold; running on local candidates on the
-  Spark instead of via the API. Extracts the rest of the problems
-  for the recurring failure modes into a deeper subset before choosing
-  an intervention size. The rung of the ladder (fine-tune, harness,
-  OPRO) gets picked from the data, not assumed.
+- **CRUXEval-O supplement A/B (184 problems, in progress).** Same
+  reviewer-seat battery, larger discriminating set, A/B framing. Phase
+  1 (bare, no mitigation) is in progress; qwen3.6-35b bare complete at
+  154/184 (83.7%), with 30 fails classified as 18 trailing-junk parse,
+  3 metavariable emission, 2 prose-copy, 7 genuine tracing errors.
+  Phase 2 (mitigated, v3 prompt + per-model system message + `_trim`)
+  is the lightest tier of harness-only mitigations; it targets the
+  prompt- and parser-artifact modes only and deliberately does not
+  touch genuine tracing errors or inconsistency. The point of the A/B
+  is to read the Δ: a large positive Δ means the bare fails were
+  mostly artifacts (mitigable), a near-zero Δ means they were genuine
+  model errors. Preliminary, a first pass to decide whether more
+  focused mitigations (constrained-decoding hook, multi-sample cons@k,
+  fine-tuning) are warranted.
 
 ## Thoughts
 
@@ -175,8 +176,9 @@ placebo manual, never read the file), Run 2 (Sonnet + real manual,
 single-turn), Run 3 (Sonnet + sham + 3 tiers). All three saturate.
 The ceiling is the model, not the manual. The recommended next step
 is a weaker base model that fails these single-turn traps 30-50% of
-the time, reusing the whole battery + sham design unchanged. That's
-the "Working on today" item. [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b253c018f36e262b1e1abff72a46e7ae/raw/screen_eval.html)
+the time, reusing the whole battery + sham design unchanged. Run 4
+picked that up (Qwen3.6-35B local vLLM, H0) and is published
+below. [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b253c018f36e262b1e1abff72a46e7ae/raw/screen_eval.html)
 
 </details>
 
@@ -223,7 +225,7 @@ re-derivation has room to flip an answer.
 </details>
 
 <details>
-<summary><strong>What I'm running on the machine (as of 2026-07-07)</strong></summary>
+<summary><strong>What I'm running on the machine (as of 2026-07-08)</strong></summary>
 
 A dated snapshot of the daily-driver eval cycle. This will rotate;
 for current work, see "Working on today" above.
@@ -239,20 +241,6 @@ for current work, see "Working on today" above.
   the model *converge*), pass@k (any correct in k, so can the model
   *ever* do it), and pass^k (all k correct, so does the model do it
   *reliably*). Self-repair is a separate axis.
-- **CRUXEval-O supplement (A/B, 184 problems, in progress).** A
-  larger CRUXEval-O set drawn from the 700 rows not in the original
-  100, stratified by SHARP common-mode failure detectors so it
-  separates artifact from genuine fails. Same 7 local models, same
-  184 problems in both phases; only the prompt + parse + system
-  message differ. Phase 1 is **bare** (v1 prompt, no system message,
-  no `_trim`); Phase 2 is **mitigated** (v3 prompt, per-model
-  system message, `_trim` on). The mitigation is the lightest tier
-  (harness only, no hooks, no fine-tuning) and targets the
-  prompt- and parser-artifact modes only. Genuine tracing errors
-  and inconsistency are out of scope. Preliminary: a first pass
-  to decide whether more focused mitigations are warranted.
-  Mitigation record (GLM-5.2) and supplement-run protocol are the
-  auditable artifacts.
 - **CRUXEval-O** (100-problem subset, not classified by difficulty),
   code-reasoning *output* prediction. Given a Python function and an
   input, predict the exact return value. Step-by-step code reasoning
