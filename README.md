@@ -1,33 +1,7 @@
-Computational genomics PhD student at Texas A&M, building AI
-infrastructure for life-science research, currently exploring how to
-evaluate and harden local LLMs on a DGX Spark at home. Less interested
-in which model is generally smartest; more in which specific capabilities
-hold up under the conditions I actually run models in: life-science
-workloads, reproducibility of academic-publication pipelines, and the
-coding that ties both together.
-
-Memory management for LLM-on-corpus workflows is a real problem with
-several distinct approaches, and the tradeoffs are real. **Parametric
-memory** (Mamba, state-space models, Jamba-style Mamba-Transformer
-hybrids; see [Gu & Dao 2023](https://arxiv.org/abs/2312.00752) and the
-[SSD connection](https://arxiv.org/abs/2405.21060)) compresses context
-into a bounded recurrent state during inference — deterministic for a
-given input, but ephemeral across calls. **Chain-of-thought memory** is
-the model's own scratchpad, paying tokens for working memory on every
-call. **External flat RAG** (vector similarity, BM25) keeps the memory
-in an index; freshness is the win, recall is bounded by embedding
-quality. **Graph-RAG** externalises the memory but adds structure —
-nodes, edges, communities — and the partitioning algorithm is what
-separates the principled tools from the embedding-only ones. Microsoft's
-GraphRAG uses [Leiden community
-detection](https://arxiv.org/abs/2404.16130); nuthatch uses a Bayesian
-degree-corrected stochastic block model, reimplemented from the
-original papers rather than via a graph-tool wrapper. **Long-context
-and fine-tuning-as-memory** stuff the corpus into the context window
-or train it into the weights; bounded by context length or training
-cost. Nuthatch is the graph-RAG entry in this taxonomy, and the unique
-piece is the partitioning: most graph-RAG tools cluster by embedding
-similarity and stop there.
+PhD student. DGX Spark at home, mostly life-science workloads and the
+code that ties them together. Less interested in which model is generally
+smartest, more in which capabilities hold up under the conditions I
+actually run models in, and what to do when they don't.
 
 ![status: ongoing series](https://img.shields.io/badge/benchmark-series%20in%20progress-0f6e69?style=flat-square)
 
@@ -50,29 +24,28 @@ similarity and stop there.
   </tr>
   <tr>
     <td valign="top">
-      Harness engineering and memory management for LLM-on-corpus
-      workflows. A read-only MCP query surface the agent cannot mutate;
-      schema-quarantined ingest with reasoned per-file validation;
-      community-aware routing via a Bayesian degree-corrected
-      stochastic block model, reimplemented from the original papers
-      rather than via a graph-tool wrapper. Honest per-tool
-      token-economy accounting against the right counterfactuals (BM25
-      for search, card-token-sum for subgraph and community reads),
-      not the whole-corpus ceiling other tools report. The KB side of
-      "reproducibility of academic publications."
-    </td>
+
+- Read-only MCP query surface the agent cannot mutate
+- Schema-quarantined ingest with reasoned per-file validation
+- Community-aware routing via Bayesian degree-corrected SBM, reimplemented from the original papers (not graph-tool)
+- Token-economy accounting vs the right counterfactuals (BM25, card-token-sum), not whole-corpus
+
+</td>
     <td valign="top">
-      A workflow orchestrator for multi-provider LLM coordination, aimed
-      at scientific research labs that need reproducibility and audit
-      trails on top of GenAI tooling. The seat/lane model in the
-      "Working on today" section comes out of this work.
-    </td>
+
+- Multi-provider LLM workflow orchestrator
+- Reproducibility and audit trails for research-lab GenAI tooling
+- Coordinated retries, per-step audit, lane-level concurrency
+
+</td>
     <td valign="top">
-      A hardened agent runtime: containerised end-to-end with declarative
-      permissioning, layered sanitisation, MCP server isolation, and
-      audit logging. The "harness engineering" rung of the intervention
-      ladder, applied at the executor level.
-    </td>
+
+- Hardened agent runtime
+- Containerised end-to-end with declarative permissioning
+- Layered sanitisation, MCP server isolation, audit logging
+- Permissioned, auditable execution for untrusted code paths
+
+</td>
   </tr>
 </table>
 
@@ -129,7 +102,32 @@ What I want from a benchmark, broadly:
 </details>
 
 <details>
-<summary><strong>Fable trap battery eval (Sonnet 5 A/B) — published</strong></summary>
+<summary><strong>Memory management for LLM-on-corpus, a 4-way taxonomy</strong></summary>
+
+The approaches I keep coming back to:
+
+- **Parametric** (Mamba, SSMs, Jamba hybrids; [Gu & Dao
+  2023](https://arxiv.org/abs/2312.00752)) compresses context into a
+  bounded recurrent state during inference. Deterministic for a given
+  input, ephemeral across calls.
+- **Chain-of-thought.** The model's own scratchpad; pays tokens for
+  working memory on every call.
+- **External flat RAG** (vector similarity, BM25). Memory in an index;
+  freshness wins, recall is bounded by embedding quality.
+- **Graph-RAG.** Same external memory, but with structure (nodes,
+  edges, communities). The partitioning algorithm is what separates
+  the principled tools from the embedding-only ones. Microsoft's
+  GraphRAG uses [Leiden community
+  detection](https://arxiv.org/abs/2404.16130); nuthatch uses a
+  Bayesian degree-corrected SBM, reimplemented from the original
+  papers (graph-tool is copyleft). Most graph-RAG tools cluster by
+  embedding similarity and stop there; nuthatch is the
+  principled-partitioning entry in this taxonomy.
+
+</details>
+
+<details>
+<summary><strong>Fable trap battery eval (Sonnet 5 A/B), published</strong></summary>
 
 9 traps across 8 failure modes, control arm vs the arm that read a
 reasoning "operating manual" written by Claude Fable 5. 9/9 pass on
@@ -140,27 +138,27 @@ a post on X by
 suggesting the Fable 5 operating manual should be portable into
 Opus 4.8. The trap battery was a way of testing whether "portable"
 means *capability* or *communication discipline*. The eval lands on
-the latter. [Read the writeup ->](https://gist.github.com/evoclock/d80dd9b13ac8f7c2e8f9565285702588)
+the latter. [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/d80dd9b13ac8f7c2e8f9565285702588/raw/trap_eval.html)
 
 </details>
 
 <details>
-<summary><strong>Capability-grade screen (Sonnet 5, Run 3) — published, uninformative by design</strong></summary>
+<summary><strong>Capability-grade screen (Sonnet 5, Run 3), published, uninformative by design</strong></summary>
 
 Three arms (control / sham / real manual) on three difficulty tiers
 (easy / medium / hard), n=3 per cell = 27 agents, single-turn, model
-held constant. Result: 27/27 pass — control, sham, and manual all
+held constant. Result: 27/27 pass. Control, sham, and manual all
 correct at every tier, including hard. The pre-registered calibration
 gate fired as designed: control must fail 25-75% to give the manual
 headroom, and it failed 0%, so by the rule all three tasks are cut.
-With no failures to flip, this run is uninformative about capability —
+With no failures to flip, this run is uninformative about capability,
 not evidence the manual doesn't help, just evidence this task family
 can't test it at Sonnet tier.
 
 The sham arm did its job. On correctness, sham = manual = control.
 On style, manual > sham > control, but the sham closed most of the
-care-gap, so the style effect is mostly priming — "any careful-sounding
-preamble" — not the manual's specific procedures. The markers unique
+care-gap, so the style effect is mostly priming ("any careful-sounding
+preamble"), not the manual's specific procedures. The markers unique
 to the real manual (provenance grades, named disconfirming test,
 explicit independent re-derivation route) appear only in the manual
 arm; the shared "careful-sounding prose" is what the sham reproduces.
@@ -171,7 +169,7 @@ single-turn), Run 3 (Sonnet + sham + 3 tiers). All three saturate.
 The ceiling is the model, not the manual. The recommended next step
 is a weaker base model that fails these single-turn traps 30-50% of
 the time, reusing the whole battery + sham design unchanged. That's
-the "Working on today" item. [Read the writeup ->](https://gist.github.com/evoclock/b253c018f36e262b1e1abff72a46e7ae)
+the "Working on today" item. [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b253c018f36e262b1e1abff72a46e7ae/raw/screen_eval.html)
 
 </details>
 
@@ -184,7 +182,8 @@ for current work, see "Working on today" above.
 - **AIME 2024 + 2025** (60-problem balanced subset across both years).
   2025 is the post-cutoff half; 2024 is the contamination-baseline
   half. Running both lets the same problem style separate *recalled*
-  from *reasoned*.
+  from *reasoned*. Pairs with CRUXEval-O as the math half of the
+  reviewer-seat battery.
 - **LiveCodeBench v6** (40-problem balanced subset, drawn from the
   1,055-problem upstream release). Three metrics, all from the same
   k-sampled run: self-consistency (majority answer is right, so does
@@ -192,16 +191,16 @@ for current work, see "Working on today" above.
   *ever* do it), and pass^k (all k correct, so does the model do it
   *reliably*). Self-repair is a separate axis.
 - **CRUXEval-O** (100 problems, full set), code-reasoning *output*
-  prediction. Given a Python function + an input, predict the exact
-  return value — step-by-step code reasoning without running it, which
-  is the core of code verification / review. Deterministic grading
-  via `ast.literal_eval`; no execution of model output. **This is the
-  code-tracing half of the reviewer-seat battery**; the other half is
-  AIME 2024 + 2025. A model that's consistent on AIME but
-  inconsistent at tracing code — or vice versa — is not a reliable
-  reviewer, so the reviewer verdict is the combined picture across
-  both, not either alone. The AIME writeup will pair with this one
-  when it lands. [7-model scoreboard —>](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/5c294ce71af4d67c8d7580a83a4ab512/raw/cruxeval-o-results.html)
+  prediction. Given a Python function and an input, predict the exact
+  return value. Step-by-step code reasoning without running it. This
+  is the core of code verification and review, and the code-tracing
+  half of the reviewer-seat battery. Deterministic grading via
+  `ast.literal_eval`; no execution of model output. A model that's
+  consistent on AIME but inconsistent at tracing code, or vice versa,
+  is not a reliable reviewer, so the reviewer verdict is the combined
+  picture across both, not either alone. The AIME writeup will pair
+  with this one when it lands.
+  [7-model scoreboard ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/5c294ce71af4d67c8d7580a83a4ab512/raw/cruxeval-o-results.html)
 - **HumanEval+** (164 problems, full set), single-shot code synthesis;
   per-problem checkpoints so failures are diagnosable, not summary-only.
 - [**tool-eval-bench**](https://github.com/SeraphimSerapis/tool-eval-bench),
