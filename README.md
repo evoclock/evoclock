@@ -30,9 +30,9 @@ that ties both together.
 - A knowledge-base layer for LLM-on-corpus workflows. Drop a paper corpus in, point an agent at it, get principled routing instead of "embed and pray"
 - Read-only MCP query surface, keeps the agent from mutating primitives
 - Schema-quarantined ingest with reasoned per-file validation
-- Community-aware routing via a Bayesian degree-corrected SBM (proprietary implementation, reimplemented from the original papers)
+- Community-aware routing via a proprietary degree-corrected SBM
 - Sub-community detection that other graph-RAG frameworks don't expose
-- Token-economy accounting vs the right counterfactuals (BM25, card-token-sum), not whole-corpus
+- Token-economy accounting vs BM25 and card-token-sum, not whole-corpus
 
 </td>
     <td valign="top">
@@ -178,6 +178,48 @@ The ceiling is the model, not the manual. The recommended next step
 is a weaker base model that fails these single-turn traps 30-50% of
 the time, reusing the whole battery + sham design unchanged. That's
 the "Working on today" item. [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b253c018f36e262b1e1abff72a46e7ae/raw/screen_eval.html)
+
+</details>
+
+<details>
+<summary><strong>Capability-grade screen (Qwen3.6-35B, Run 4), published, H0</strong></summary>
+
+Same three-arm battery, single-turn, sham manual unchanged. The
+change is the model: Sonnet is gone, Qwen3.6-35B served locally via
+vLLM, thinking off, temp 0.7, n=8 per arm. Plus a new harder trap (X:
+a 90-day retention / cumulative-storage worksheet where the agent had
+to catch the days-in-month vs retention substitution, a 3x cost
+understatement).
+
+First time the calibration gate opened. The hard Simpson's reversal
+calibrated at 2/8 control fail (25%), brushing the bottom of the
+pre-registered 25-75% headroom band. The new X trap saturated at
+0/8 control fail and was not armed. Run the 3-arm test on H with
+the gate open.
+
+H0, no capability effect. The arm run's independent control draw
+produced 0/8 fails. Sham 8/8, manual 8/8, control 8/8. The 25% vs
+0% gap across the two draws is sampling noise at n=8 and temp 0.7,
+not a contradiction. The pre-registered rule calls all-arms-within-
+15pp as H0, and that is the verdict. Headroom was marginal, not
+durable, so there were no failures for the manual to flip.
+
+The one genuine methodological learning is buried-reversal grading.
+Qwen sometimes opens with the wrong verdict, re-derives mid-answer,
+and lands on the right one in a labelled Conclusion or Recommendation
+section. A naive first-word grader marks these wrong. The grader
+now reads the labelled conclusion (falling back to the opening only
+when there is no label) and strips markdown emphasis so `do **not**
+ship` still parses as a negation. Every graded row was eyeballed
+against the full answer; the FAILs are genuine ships-of-B.
+
+Four runs converge. Sonnet (runs 1-3) saturates. Qwen3.6-35B
+brushes the gate on H but can't sustain it. The single-turn
+verify-an-artifact family is done. To detect a capability effect
+the next move is either a still-weaker model (Nemotron-30B queued)
+that fails H ~30-50% reliably, or a multi-step task family where
+re-derivation has room to flip an answer.
+[Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/d190c2c8ebb94651ae7db7dc680c7e9f/raw/screen_eval_run4.html)
 
 </details>
 
