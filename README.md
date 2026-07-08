@@ -302,17 +302,6 @@ for current work, see "Working on today" above.
   prompt- and parser-artifact modes only. Genuine tracing errors
   and inconsistency are out of scope. Preliminary: a first pass
   to decide whether more focused mitigations are warranted.
-- **CRUXEval-O** (100-problem subset, not classified by difficulty),
-  code-reasoning *output* prediction. Given a Python function and an
-  input, predict the exact return value. Step-by-step code reasoning
-  without running it. This is the core of code verification and
-  review, and the code-tracing half of the reviewer-seat battery.
-  Deterministic grading via `ast.literal_eval`; no execution of model
-  output. A model that's consistent on AIME but inconsistent at
-  tracing code, or vice versa, is not a reliable reviewer, so the
-  reviewer verdict is the combined picture across both, not either
-  alone. The AIME writeup will pair with this one when it lands.
-  [7-model scoreboard ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/5c294ce71af4d67c8d7580a83a4ab512/raw/cruxeval-o-results.html)
 - **HumanEval+** (164 problems, full set), single-shot code synthesis;
   per-problem checkpoints so failures are diagnosable, not summary-only.
 - [**tool-eval-bench**](https://github.com/SeraphimSerapis/tool-eval-bench),
