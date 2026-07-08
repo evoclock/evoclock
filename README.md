@@ -116,9 +116,8 @@ or validating against:
   bounded recurrent state during inference. Deterministic for a given
   input, ephemeral across calls.
 - **Chain-of-thought.** The model's own scratchpad; pays tokens for
-  working memory on every call.
-
-  <sub>* We would never do such a ridiculous thing.</sub>
+  working memory on every call. Poor ROI for the token cost and
+  overhead.
 - **External flat RAG** (vector similarity, BM25). Memory in an index;
   freshness wins, recall is bounded by embedding quality.
 - **Graph-RAG.** Same external memory, but with structure (nodes,
