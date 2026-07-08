@@ -1,7 +1,9 @@
-PhD student. DGX Spark at home, mostly life-science workloads and the
-code that ties them together. Less interested in which model is generally
-smartest, more in which capabilities hold up under the conditions I
-actually run models in, and what to do when they don't.
+ML/AI engineer. Currently evaluating and hardening local LLMs on a
+DGX Spark at home. Less interested in which model is generally
+smartest, more in which specific capabilities hold up under the
+conditions I actually run models in: life-science workloads,
+reproducibility of academic-publication pipelines, and the coding
+that ties both together.
 
 ![status: ongoing series](https://img.shields.io/badge/benchmark-series%20in%20progress-0f6e69?style=flat-square)
 
