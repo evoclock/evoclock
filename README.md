@@ -28,26 +28,25 @@ that ties both together.
     <td valign="top">
 
 - A knowledge-base layer for LLM-on-corpus workflows. Drop a paper corpus in, point an agent at it, get principled routing instead of "embed and pray"
-- Read-only MCP query surface, keeps the agent from mutating primitives
-- Schema-quarantined ingest with reasoned per-file validation
-- Community-aware routing via a proprietary degree-corrected SBM
-- Sub-community detection that other graph-RAG frameworks don't expose
-- Token-economy accounting vs BM25 and card-token-sum, not whole-corpus
+- Read-only MCP query surface
+- Schema-quarantined ingest with file-level validation
+- Routing via a proprietary degree-corrected SBM
+- Sub-community detection other graph-RAG lacks
+- Per-tool token-economy accounting (BM25, card-sum)
 
 </td>
     <td valign="top">
 
 - A multi-provider LLM workflow orchestrator for research pipelines that need to be reproducible and auditable end-to-end
-- Reproducibility and audit trails on top of GenAI tooling for the lab
-- Coordinated retries, per-step audit, lane-level concurrency
+- Audit trails on top of GenAI tooling
+- Per-step audit, lane-level concurrency
 
 </td>
     <td valign="top">
 
 - A hardened agent runtime for executing LLM-generated code in a sandboxed, auditable container
-- Containerised end-to-end with declarative permissioning
-- Layered sanitisation, MCP server isolation, audit logging
-- Permissioned execution for untrusted code paths
+- Containerised end-to-end
+- Sanitisation, MCP isolation, audit logs
 
 </td>
   </tr>
