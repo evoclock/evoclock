@@ -27,9 +27,10 @@ that ties both together.
   <tr>
     <td valign="top">
 
-- Read-only MCP query surface the agent cannot mutate
+- Read-only MCP query surface, keeps the agent from mutating primitives
 - Schema-quarantined ingest with reasoned per-file validation
-- Community-aware routing via Bayesian degree-corrected SBM, reimplemented from the original papers (not graph-tool)
+- Community-aware routing via a Bayesian degree-corrected SBM (proprietary implementation, reimplemented from the original papers)
+- Sub-community detection that other graph-RAG frameworks don't expose
 - Token-economy accounting vs the right counterfactuals (BM25, card-token-sum), not whole-corpus
 
 </td>
@@ -104,9 +105,11 @@ What I want from a benchmark, broadly:
 </details>
 
 <details>
-<summary><strong>Memory management for LLM-on-corpus, a 4-way taxonomy</strong></summary>
+<summary><strong>Memory management for LLM-on-corpus</strong></summary>
 
-The approaches I keep coming back to:
+Not an exhaustive list, but if you have an interest in memory
+management, these are some of the areas I have been experimenting on
+or validating against:
 
 - **Parametric** (Mamba, SSMs, Jamba hybrids; [Gu & Dao
   2023](https://arxiv.org/abs/2312.00752)) compresses context into a
@@ -114,17 +117,20 @@ The approaches I keep coming back to:
   input, ephemeral across calls.
 - **Chain-of-thought.** The model's own scratchpad; pays tokens for
   working memory on every call.
+
+  <sub>* We would never do such a ridiculous thing.</sub>
 - **External flat RAG** (vector similarity, BM25). Memory in an index;
   freshness wins, recall is bounded by embedding quality.
 - **Graph-RAG.** Same external memory, but with structure (nodes,
   edges, communities). The partitioning algorithm is what separates
   the principled tools from the embedding-only ones. Microsoft's
   GraphRAG uses [Leiden community
-  detection](https://arxiv.org/abs/2404.16130); nuthatch uses a
-  Bayesian degree-corrected SBM, reimplemented from the original
-  papers (graph-tool is copyleft). Most graph-RAG tools cluster by
-  embedding similarity and stop there; nuthatch is the
-  principled-partitioning entry in this taxonomy.
+  detection](https://arxiv.org/abs/2404.16130); [nuthatch](https://github.com/evoclock/nuthatch)
+  is the proprietary SBM-based entry in this space.
+
+Worth saying why frontier labs might not be too eager to solve this:
+the more rounds you need to take to solve a problem, the more tokens
+you burn, and that is ultimately in their commercial interest.
 
 </details>
 
