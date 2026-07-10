@@ -97,6 +97,35 @@ that ties both together.
 ## Thoughts
 
 <details>
+<summary><strong>Current benchmark queue</strong></summary>
+
+This is the machine-facing eval queue. The date is intentionally not
+embedded in the heading; this table should be regenerated from the
+benchmark plan when the queue changes. When this project rotates out,
+this table can be archived as a dated snapshot and the same shape reused
+for the next active project. For the active narrative, see "Working on
+today" above.
+
+| benchmark / run | descriptor | role | metric | status |
+|---|---|---|---|---|
+| Fable operating-manual trap battery, Run 5 | Granite-small control/sham/manual test on E/M/H/X worksheet traps | reasoning discipline / reviewer stressor | calibration gate, then arm delta | running |
+| CRUXEval-O supplement cons@k | 184 code-tracing problems, repeated samples after prompt A/B | reviewer | cons@k + pass^k | running |
+| AIME 2024 + 2025 | 60-problem balanced reasoning subset across contamination-baseline and post-cutoff years | reviewer + planner | cons@k + pass^k | queued |
+| tool-eval-bench | Deterministic tool-use and multi-turn orchestration scenarios | planner | pass@k + pass^k / harness trials | planned |
+| LiveCodeBench v6 | Coding generation subset, rebuilt for stratification before publication | implementer | pass@k + pass^k | planned |
+| HumanEval+ | 164-problem code generation set with per-problem checkpoints | implementer | pass@k + pass^k | planned |
+| Terminal Bench hard subset | Agentic terminal tasks from the 75B model-card provenance set | planner finalist confirmation | pass@k + pass^k | planned |
+| HMMT Feb25 + GPQA | With-tools and no-tools reasoning probes from the 75B model-card provenance set | reviewer finalist confirmation | cons@k + pass^k | planned |
+
+Seat shorthand: **reviewer** reads and checks reasoning or code,
+**planner** chooses tools and orders work, and **implementer** writes
+code. The final public reports should separate selection runs from
+finalist-confirmation runs so model-card provenance does not get mixed
+with the cheaper full-panel sweeps.
+
+</details>
+
+<details>
 <summary><strong>I recently got a DGX Spark, then I got curious</strong></summary>
 
 DGX Spark at home, more ideas than time, and a specific use case pulling
@@ -327,34 +356,6 @@ repeat the task and see how much of that floor survives majority vote.
 
 </details>
 
-<details>
-<summary><strong>Current benchmark queue</strong></summary>
-
-This is the machine-facing eval queue. The date is intentionally not
-embedded in the heading; this table should be regenerated from the
-benchmark plan when the queue changes. When this project rotates out,
-this table can be archived as a dated snapshot and the same shape reused
-for the next active project. For the active narrative, see "Working on
-today" above.
-
-| benchmark / run | descriptor | role | metric | status |
-|---|---|---|---|---|
-| Fable operating-manual trap battery, Run 5 | Granite-small control/sham/manual test on E/M/H/X worksheet traps | reasoning discipline / reviewer stressor | calibration gate, then arm delta | running |
-| CRUXEval-O supplement cons@k | 184 code-tracing problems, repeated samples after prompt A/B | reviewer | cons@k + pass^k | running |
-| AIME 2024 + 2025 | 60-problem balanced reasoning subset across contamination-baseline and post-cutoff years | reviewer + planner | cons@k + pass^k | queued |
-| tool-eval-bench | Deterministic tool-use and multi-turn orchestration scenarios | planner | pass@k + pass^k / harness trials | planned |
-| LiveCodeBench v6 | Coding generation subset, rebuilt for stratification before publication | implementer | pass@k + pass^k | planned |
-| HumanEval+ | 164-problem code generation set with per-problem checkpoints | implementer | pass@k + pass^k | planned |
-| Terminal Bench hard subset | Agentic terminal tasks from the 75B model-card provenance set | planner finalist confirmation | pass@k + pass^k | planned |
-| HMMT Feb25 + GPQA | With-tools and no-tools reasoning probes from the 75B model-card provenance set | reviewer finalist confirmation | cons@k + pass^k | planned |
-
-Seat shorthand: **reviewer** reads and checks reasoning or code,
-**planner** chooses tools and orders work, and **implementer** writes
-code. The final public reports should separate selection runs from
-finalist-confirmation runs so model-card provenance does not get mixed
-with the cheaper full-panel sweeps.
-
-</details>
 
 <details>
 <summary><strong>On cooling: 6.6W versus 35W, watts-per-token, and a desk-scale PUE argument</strong></summary>
