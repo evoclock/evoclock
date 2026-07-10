@@ -62,20 +62,17 @@ that ties both together.
 
 ## Working on today
 
-- **CRUXEval-O supplement A/B (184 problems, in progress).** Same
-  reviewer-seat battery, larger discriminating set, A/B framing. Phase
-  1 (bare, no mitigation) is in progress; qwen3.6-35b bare complete at
-  154/184 (83.7%), with 30 fails classified as 18 trailing-junk parse,
-  3 metavariable emission, 2 prose-copy, 7 genuine tracing errors.
-  Phase 2 (mitigated, v3 prompt + per-model system message + `_trim`)
-  is the lightest tier of harness-only mitigations; it targets the
-  prompt- and parser-artifact modes only and deliberately does not
-  touch genuine tracing errors or inconsistency. The point of the A/B
-  is to read the Δ: a large positive Δ means the bare fails were
-  mostly artifacts (mitigable), a near-zero Δ means they were genuine
-  model errors. Preliminary, a first pass to decide whether more
-  focused mitigations (constrained-decoding hook, multi-sample cons@k,
-  fine-tuning) are warranted.
+- **CRUXEval-O cons@k follow-up.** The 184-problem prompt A/B is
+  published; the next question is how much of the **wrong under both**
+  floor survives repeated sampling and majority vote. I am rerunning
+  the same code-tracing set with multiple samples per problem across
+  Nemotron-3-Super-120B-A12B-NVFP4, gemma-4-26B-A4B-it,
+  Ornith-1.0-35B-FP8, Holo-3.1-35B-A3B-NVFP4,
+  Qwen3.6-35B-A3B-NVFP4, Nemotron-3-Nano-30B-A3B-NVFP4,
+  and granite-4.0-h-small-FP8. The A/B floor is an upper bound; cons@k
+  asks which genuine tracing errors are stable and which ones disappear
+  when the model gets more than one deterministic-looking chance to land
+  on the right literal.
 
 ## Thoughts
 
@@ -238,19 +235,21 @@ re-derivation has room to flip an answer.
 First published instance of the reviewer-seat battery. 100 CRUXEval-O
 problems (a subset, not classified by difficulty), 7 local models,
 Python output prediction, deterministic grading via
-`ast.literal_eval`. Final scores: super-120b 98, gemma-4-26b 98,
-qwen3.6-35b 97, nemotron-30b 96, ornith-fp8 94, holo-3.1-35b 88,
-granite-small 81. All 7 cards clean: 0 prompt/parse/harness
-exclusions.
+`ast.literal_eval`. Final scores: Nemotron-3-Super-120B-A12B-NVFP4 98,
+gemma-4-26B-A4B-it 98, Qwen3.6-35B-A3B-NVFP4 97,
+Nemotron-3-Nano-30B-A3B-NVFP4 96, Ornith-1.0-35B-FP8 94,
+Holo-3.1-35B-A3B-NVFP4 88, granite-4.0-h-small-FP8 81.
+All 7 cards clean: 0 prompt/parse/harness exclusions.
 
 The 18-point spread across 7 models is narrower than the raw
 numbers suggest. Most of the headroom gap was prompt/parse artifact,
 not model inability. The published writeup walks through every
-fix: gemma's code-reproduction recovery (80 → 98), qwen's
-metavariable + example-answer + reasoning-bleed fix chain (84 → 97
+fix: the gemma-4-26B-A4B-it code-reproduction recovery
+(80 → 98), the Qwen3.6-35B-A3B-NVFP4 metavariable + example-answer + reasoning-bleed fix chain (84 → 97
 across four prompt variants), the parse fix that recovered
-trailing-junk false-fails across qwen and ornith, and the
-targeted reruns on reasoning-bleed fails for ornith and holo. Read
+trailing-junk false-fails across Qwen3.6-35B-A3B-NVFP4 and
+Ornith-1.0-35B-FP8, and the targeted reruns on reasoning-bleed
+fails for Ornith-1.0-35B-FP8 and Holo-3.1-35B-A3B-NVFP4. Read
 the gist for the per-problem verdict and the issue log.
 
 **Failure-mode distribution (post-clean, all genuine fails).**
@@ -259,9 +258,8 @@ common (≥2 models hit the same problem, 90% of the pairs); 5
 unique (1 model only, 10%). The common/unique split is the
 substantive finding, not the scoreboard: a battery that surfaces
 mostly common fails is testing *failure modes*, not *model
-idiosyncrasies*. The supplement (Working on today above)
-over-samples the high-frequency common modes to push this
-further.
+idiosyncrasies*. The 184-problem supplement published below
+over-samples the high-frequency common modes to push this further.
 
 The dominant mode is string-transform errors: off-by-char (10
 pairs), truncation (5), case (3), short-string overproduce (2),
@@ -270,7 +268,7 @@ the second cluster (~23%). The single hardest mode is
 `dict_string` (4 models fail the one problem, s33), and only 1
 more `dict_string` problem exists in the remaining 700, a hard
 anchor that cannot be grown as a stratum. Numeric errors are
-entirely unique to granite, confirming the weighting rule:
+entirely unique to granite-4.0-h-small-FP8, confirming the weighting rule:
 large pool, single-model, rare, so over-sampling numeric is
 noise.
 
@@ -278,6 +276,34 @@ The data is what seeded the supplement (Regime B stratification)
 and the failure-mode-driven analysis in
 `benchmark-failure-modes.md`.
 [7-model scoreboard ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/5c294ce71af4d67c8d7580a83a4ab512/raw/cruxeval-o-results.html)
+
+</details>
+
+<details>
+<summary><strong>CRUXEval-O supplement A/B (184 problems, published)</strong></summary>
+
+A follow-up to the first CRUXEval-O run, using 184 code-tracing
+problems across the same local-model setup on the DGX Spark. The
+models were Nemotron-3-Super-120B-A12B-NVFP4, gemma-4-26B-A4B-it,
+Ornith-1.0-35B-FP8, Holo-3.1-35B-A3B-NVFP4,
+Qwen3.6-35B-A3B-NVFP4, Nemotron-3-Nano-30B-A3B-NVFP4, and
+granite-4.0-h-small-FP8. Each model saw the same problems under the
+baseline prompt and under a cleaner prompt plus a short per-model
+system message.
+
+The aggregate prompt delta is the wrong story. The effect is bimodal:
+Holo-3.1-35B-A3B-NVFP4 and granite-4.0-h-small-FP8 gain because the
+new prompt recovers formatting failures, while gemma-4-26B-A4B-it and
+Qwen3.6-35B-A3B-NVFP4 regress because the mitigation breaks previously
+correct answers. The useful signal is the **wrong under both** floor
+after parser recovery. By that floor, the ranking is
+Nemotron-3-Super-120B-A12B-NVFP4 (3), gemma-4-26B-A4B-it (6),
+Ornith-1.0-35B-FP8 (9), Qwen3.6-35B-A3B-NVFP4 (12),
+Nemotron-3-Nano-30B-A3B-NVFP4 (16), Holo-3.1-35B-A3B-NVFP4 (42),
+granite-4.0-h-small-FP8 (54). The next experiment is cons@k voting:
+repeat the task and see how much of that floor survives majority vote.
+
+[Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/5536ccec2b848b588ec4adaceefa20ef/raw/cruxeval-o-ab-184.html)
 
 </details>
 
@@ -298,18 +324,6 @@ for current work, see "Working on today" above.
   the model *converge*), pass@k (any correct in k, so can the model
   *ever* do it), and pass^k (all k correct, so does the model do it
   *reliably*). Self-repair is a separate axis.
-- **CRUXEval-O supplement (A/B, 184 problems, in progress).** A
-  larger CRUXEval-O set drawn from the 700 rows not in the original
-  100, stratified by SHARP common-mode failure detectors so it
-  separates artifact from genuine fails. Same 7 local models, same
-  184 problems in both phases; only the prompt + parse + system
-  message differ. Phase 1 is **bare** (v1 prompt, no system message,
-  no `_trim`); Phase 2 is **mitigated** (v3 prompt, per-model
-  system message, `_trim` on). The mitigation is the lightest tier
-  (harness only, no hooks, no fine-tuning) and targets the
-  prompt- and parser-artifact modes only. Genuine tracing errors
-  and inconsistency are out of scope. Preliminary: a first pass
-  to decide whether more focused mitigations are warranted.
 - **HumanEval+** (164 problems, full set), single-shot code synthesis;
   per-problem checkpoints so failures are diagnosable, not summary-only.
 - [**tool-eval-bench**](https://github.com/SeraphimSerapis/tool-eval-bench),
