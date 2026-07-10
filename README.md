@@ -114,15 +114,15 @@ today" above.
 | tool-eval-bench | Deterministic tool-use and multi-turn orchestration scenarios | planner | pass@k + pass^k / harness trials | planned |
 | LiveCodeBench v6 | Coding generation subset, rebuilt for stratification before publication | implementer | pass@k + pass^k | planned |
 | HumanEval+ | 164-problem code generation set with per-problem checkpoints | implementer | pass@k + pass^k | planned |
-| Terminal Bench hard subset | Agentic terminal tasks from the 75B model-card provenance set | planner finalist confirmation | pass@k + pass^k | planned |
-| HMMT Feb25 + GPQA | With-tools and no-tools reasoning probes from the 75B model-card provenance set | reviewer finalist confirmation | cons@k + pass^k | planned |
+| Terminal Bench hard subset | Hard terminal-agent tasks that test command planning, state tracking, recovery, and execution over a real shell workflow | planner finalist confirmation | pass@k + pass^k | planned |
+| HMMT Feb25 + GPQA | Hard competition-math and graduate science QA, run with and without tools to check whether reviewer finalists can verify difficult reasoning rather than only trace code | reviewer finalist confirmation | cons@k + pass^k | planned |
 
 Seat shorthand follows the way Hillstar-style multi-agent
 orchestrators divide work: **reviewer** reads and checks reasoning or
 code, **planner** chooses tools and orders work, and **implementer**
 writes code or concrete artifacts. The final public reports should
-separate selection runs from finalist-confirmation runs so model-card
-provenance does not get mixed with the cheaper full-panel sweeps.
+separate selection runs from finalist-confirmation runs so expensive
+confirmation probes do not get mixed with the cheaper full-panel sweeps.
 
 </details>
 
