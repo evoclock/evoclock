@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REPORT_TITLE</title>
+<style>
+/* Report template based on thermall's thermall-power-station palette.
+   Keep generated reports self-contained so they work as gists via htmlpreview. */
+:root {
+  --bg: #1a1816;
+  --surface: #383431;
+  --panel: #4a4540;
+  --boost: #5c564f;
+  --text: #ead1b5;
+  --muted: #b09080;
+  --primary: #79c39e;
+  --secondary: #e77843;
+  --accent: #ee9b69;
+  --shadow: rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.55;
+}
+body { padding: 42px 20px 56px; }
+main { max-width: 1120px; margin: 0 auto; }
+
+h1 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: clamp(2rem, 4.8vw, 4.4rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+h2 {
+  margin: 34px 0 12px;
+  color: var(--primary);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+h3 { margin: 0 0 8px; color: var(--text); font-size: 1.02rem; }
+p { margin: 0 0 14px; }
+a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+code {
+  color: var(--primary);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.92em;
+}
+
+.subtitle {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+.lede {
+  margin: 22px 0 28px;
+  max-width: 940px;
+  color: var(--text);
+  font-size: clamp(1.18rem, 2.2vw, 1.55rem);
+  line-height: 1.38;
+}
+.prose { max-width: 930px; }
+.callout {
+  margin: 24px 0;
+  padding: 16px 18px;
+  border: 1px solid var(--boost);
+  border-left: 4px solid var(--primary);
+  background: var(--surface);
+  border-radius: 6px;
+  box-shadow: 0 6px 20px var(--shadow);
+}
+.callout.warn { border-left-color: var(--secondary); }
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin: 22px 0 28px;
+}
+.metric {
+  background: var(--surface);
+  border: 1px solid var(--boost);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.metric-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.metric-value {
+  display: block;
+  margin-top: 4px;
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 24px;
+  background: var(--surface);
+  border: 1px solid var(--boost);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 0.92rem;
+}
+th {
+  background: var(--panel);
+  color: var(--primary);
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+td {
+  padding: 10px 12px;
+  border-top: 1px solid var(--panel);
+  vertical-align: top;
+}
+.model, .strong { color: var(--text); font-weight: 700; }
+.pos { color: var(--primary); font-weight: 700; }
+.neg { color: var(--secondary); font-weight: 700; }
+.zero { color: var(--muted); font-weight: 700; }
+
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 18px 0 28px;
+}
+.group {
+  background: var(--surface);
+  border: 1px solid var(--boost);
+  border-radius: 6px;
+  padding: 16px;
+}
+.group.better { border-top: 4px solid var(--primary); }
+.group.worse { border-top: 4px solid var(--secondary); }
+.group.neutral { border-top: 4px solid var(--muted); }
+.group-sub {
+  color: var(--muted);
+  font-size: 0.84rem;
+  margin-bottom: 10px;
+}
+.group ul { margin: 0; padding-left: 18px; }
+.group li { margin: 8px 0; }
+
+.glossary {
+  margin: 22px 0 30px;
+  background: var(--surface);
+  border: 1px solid var(--boost);
+  border-radius: 6px;
+  padding: 16px 18px;
+}
+.glossary dl { margin: 0; }
+.glossary dt {
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 12px;
+}
+.glossary dt:first-child { margin-top: 0; }
+.glossary dd {
+  margin: 3px 0 0;
+  color: var(--text);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--boost);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px var(--shadow);
+}
+.card.open { grid-column: 1 / -1; }
+.card-head {
+  padding: 16px 18px;
+  cursor: pointer;
+  user-select: none;
+}
+.card-title {
+  color: var(--text);
+  font-weight: 800;
+  line-height: 1.25;
+}
+.card-kicker {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border: 1px solid var(--boost);
+  border-radius: 999px;
+  padding: 2px 9px;
+  color: var(--text);
+  background: var(--panel);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+.pill.good { color: var(--primary); }
+.pill.bad { color: var(--secondary); }
+.pill.warn { color: var(--accent); }
+.card-toggle {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+.card-toggle::before { content: "▸ "; }
+.card.open .card-toggle { color: var(--primary); }
+.card.open .card-toggle::before { content: "▾ "; }
+.card-body {
+  display: none;
+  overflow-x: auto;
+  border-top: 1px solid var(--boost);
+}
+.card.open .card-body { display: block; }
+.card-body table {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.84rem;
+  word-break: break-word;
+}
+.row-good td:first-child { border-left: 3px solid var(--primary); }
+.row-bad td:first-child { border-left: 3px solid var(--secondary); }
+.row-warn td:first-child { border-left: 3px solid var(--accent); }
+.row-muted td { color: var(--muted); }
+.row-muted td:first-child { border-left: 3px solid var(--boost); }
+
+.generated {
+  margin-top: 34px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+@media (max-width: 700px) {
+  body { padding: 28px 12px 42px; }
+  th, td { padding: 8px 9px; }
+  .card.open { grid-column: auto; }
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>REPORT_TITLE</h1>
+  <p class="subtitle">BENCHMARK_NAME · MODEL_COUNT models · PROBLEM_COUNT problems · RUN_SETTING</p>
+
+  <p class="lede">ONE_SENTENCE_FINDING. Put the real result here, not a label or a teaser.</p>
+
+  <section class="prose">
+    <p>OPENING_CONTEXT. Define the benchmark, the task, and the evaluation setup in plain language before using any specialized term.</p>
+    <p>METHOD_SUMMARY. State what changed, what stayed fixed, and which parts are measurement fixes rather than model interventions.</p>
+  </section>
+
+  <section class="metric-grid" aria-label="Headline metrics">
+    <div class="metric"><span class="metric-label">models</span><span class="metric-value">7</span></div>
+    <div class="metric"><span class="metric-label">problems</span><span class="metric-value">184</span></div>
+    <div class="metric"><span class="metric-label">samples</span><span class="metric-value">1</span></div>
+    <div class="metric"><span class="metric-label">temperature</span><span class="metric-value">0</span></div>
+  </section>
+
+  <h2>Scores</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>model</th>
+        <th>baseline</th>
+        <th>condition</th>
+        <th>change</th>
+        <th>primary floor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="model">FULL_MODEL_NAME</td>
+        <td>0 / 0</td>
+        <td>0 / 0</td>
+        <td class="zero">0</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Pattern</h2>
+  <section class="groups">
+    <div class="group better">
+      <h3>Better</h3>
+      <div class="group-sub">Use only when the delta is meaningful.</div>
+      <ul>
+        <li><span class="strong">MODEL</span>: WHY_IT_MOVED.</li>
+      </ul>
+    </div>
+    <div class="group worse">
+      <h3>Worse</h3>
+      <div class="group-sub">Use when the intervention broke previously correct behavior.</div>
+      <ul>
+        <li><span class="strong">MODEL</span>: WHAT_REGRESSED.</li>
+      </ul>
+    </div>
+    <div class="group neutral">
+      <h3>No real difference</h3>
+      <div class="group-sub">Use for small deltas or balanced churn.</div>
+      <ul>
+        <li><span class="strong">MODEL</span>: WHY_THIS_IS_NOISE_OR_A_WASH.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="glossary">
+    <h2>Definitions</h2>
+    <dl>
+      <dt>TERM</dt>
+      <dd>Plain-language definition. Define jargon the first time it appears in the report body too.</dd>
+      <dt>measurement fix</dt>
+      <dd>A grading or parsing correction that recovers an answer the model already produced without changing the pass criterion.</dd>
+      <dt>mitigation</dt>
+      <dd>A model-facing intervention such as prompt wording or a system message. Treat this separately from measurement fixes.</dd>
+    </dl>
+  </section>
+
+  <section class="prose">
+    <p>NARRATIVE_BRIDGE_TO_EVIDENCE. Explain why the expandable cards below are the audit trail for the claim, not decorative detail.</p>
+  </section>
+
+  <h2>Per-model evidence</h2>
+  <section class="cards">
+    <article class="card" id="card-example">
+      <div class="card-head" onclick="toggleCard('card-example')">
+        <div class="card-title">FULL_MODEL_NAME</div>
+        <div class="card-kicker">short run id or condition label</div>
+        <div class="card-stats">
+          <span class="pill good">fixed 0</span>
+          <span class="pill bad">broken 0</span>
+          <span class="pill warn">wrong under both 0</span>
+          <span class="pill">both right 0</span>
+        </div>
+        <div class="card-toggle">show per-problem</div>
+      </div>
+      <div class="card-body">
+        <table>
+          <thead>
+            <tr>
+              <th>problem</th>
+              <th>condition A</th>
+              <th>condition B</th>
+              <th>outcome</th>
+              <th>predicted</th>
+              <th>expected</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-warn">
+              <td class="mono">sample_000</td>
+              <td>FAIL</td>
+              <td>FAIL</td>
+              <td>wrong under both</td>
+              <td class="mono">PREDICTION</td>
+              <td class="mono">EXPECTED</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <section class="callout warn">
+    <p><strong>Bright line.</strong> State which part is fair measurement and which part is an intervention. Do not let the prose imply that prompt iteration made the model smarter unless the evidence actually supports that.</p>
+  </section>
+
+  <p class="generated">Generated DATE from SOURCE_DATA. Template: reports/templates/powerstation-report.html.</p>
+</main>
+<script>
+function toggleCard(id) {
+  document.getElementById(id).classList.toggle("open");
+}
+</script>
+</body>
+</html>
