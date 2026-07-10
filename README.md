@@ -62,17 +62,12 @@ that ties both together.
 
 ## Working on today
 
-- **Run 5: Fable operating-manual trap battery on
-  granite-4.0-h-small-FP8, landed.** The tier-X arm run gave the manual
-  real headroom on the 90-day retention trap: control passed 8/24
-  (33%), sham passed 7/24 (29%), and the actual Fable manual passed
-  16/24 (67%). That is the first clean H1 signal in the series. The
-  same-length placebo manual did not move the model, while the real
-  operating manual lifted the catch rate by about 34 percentage points
-  over control. A pass required refusing sign-off and naming the specific
-  30-day versus 90-day storage error. [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b539f39d06e12c3ef13e5c9892ba7ee0/raw/fable-run5-granite.html) Next step is a reliability
-  rerun with cons@k and pass^k rather than treating the point estimate as
-  the whole result.
+- **Run 5: a reasoning manual may help weaker models catch real
+  errors.** On granite-4.0-h-small-FP8, the Fable manual doubled the
+  catch rate on the 90-day retention trap: control 8/24, sham 7/24,
+  manual 16/24. The placebo did nothing, so the signal is the manual's
+  procedures, not generic carefulness. Caveat: n=24 per arm. [Read the
+  writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b539f39d06e12c3ef13e5c9892ba7ee0/raw/fable-run5-granite.html)
 
 - **CRUXEval-O cons@k follow-up.** The 184-problem prompt A/B is
   published; the next question is how much of the **wrong under both**
@@ -274,25 +269,25 @@ re-derivation has room to flip an answer.
 <details>
 <summary><strong>Capability-grade screen (granite-4.0-h-small-FP8, Run 5), published, H1</strong></summary>
 
-Same control / sham / manual design, now on granite-4.0-h-small-FP8
-served locally as `granite-small`, plain non-thinking mode, temp 0.7.
-The calibration gate selected tier X, the 90-day retention /
-cumulative-storage worksheet trap, because control failed 10/16 times
-and therefore left real headroom.
+The important result is direct: on a weaker small open model, the
+Fable operating manual appears to help catch a real buried reasoning
+error. granite-4.0-h-small-FP8 was served locally as `granite-small`,
+plain non-thinking mode, temp 0.7. Calibration selected tier X, the
+90-day retention / cumulative-storage worksheet trap, because control
+failed 10/16 times and therefore left room for the manual to matter.
 
 The armed run landed the first positive H1 signal in the series:
-control 8/24 (33%), sham 7/24 (29%), manual 16/24 (67%). The sham
-arm is the important comparison: a same-length carefulness preamble
-did not improve the model, while the actual Fable operating manual
-lifted the catch rate by about 34 percentage points over control. A
-pass required both refusing sign-off and naming the specific 30-day
-versus 90-day storage error.
+control 8/24 (33%), sham 7/24 (29%), manual 16/24 (67%). The sham arm
+is the key comparison. A same-length carefulness preamble did not help,
+while the real Fable operating manual lifted the catch rate by about 34
+percentage points over control. A pass required both refusing sign-off
+and naming the specific 30-day versus 90-day storage error.
 
-This is evidence for content-dependent capability transfer on this
-trap family, not just a nicer explanation style. The caveat is sample
-size: n=24 per arm gives a signal, not a final reliability estimate.
-The next step is the cons@k/pass^k rerun to measure whether the manual
-arm is stable across repeated samples.
+This is evidence that the manual's specific procedures may transfer
+useful reasoning discipline to a small model on this trap family. The
+caveat is sample size: n=24 per arm gives a signal, not a final
+reliability estimate. The next step is the cons@k/pass^k rerun to see
+whether the manual arm stays stable across repeated samples.
 [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b539f39d06e12c3ef13e5c9892ba7ee0/raw/fable-run5-granite.html)
 
 </details>

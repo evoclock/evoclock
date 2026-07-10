@@ -38,7 +38,7 @@ html, body {
 }
 body { padding: 42px 20px 56px; }
 main { max-width: 1120px; margin: 0 auto; }
-h1 { margin: 0 0 8px; color: var(--text); font-size: clamp(2.1rem, 5vw, 4.8rem); line-height: 0.98; letter-spacing: 0; }
+h1 { margin: 0 0 8px; color: var(--text); font-size: clamp(1.9rem, 4vw, 3.2rem); line-height: 0.98; letter-spacing: 0; }
 h2 { margin: 34px 0 12px; color: var(--primary); font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; }
 h3 { margin: 0 0 8px; color: var(--text); font-size: 1.04rem; }
 p { margin: 0 0 14px; }
@@ -196,15 +196,15 @@ def render(arm: dict, calib: dict, arm_path: Path, calib_path: Path) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The manual moved outcomes, not just tone</title>
+<title>A reasoning manual helped a small model catch the trap</title>
 <style>{PALETTE_CSS}</style>
 </head>
 <body>
 <main>
-  <h1>The manual moved outcomes, not just tone</h1>
+  <h1>A reasoning manual helped a small model catch the trap</h1>
   <p class="subtitle">Fable operating-manual trap battery, Run 5 · {FULL_MODEL_NAME} · tier X · n=24 per arm · temperature 0.7</p>
 
-  <p class="lede">The Fable-authored operating manual produced the first clean H1 signal in the series: manual 16/24, control 8/24, sham 7/24. The same-length placebo did nothing, which is the result the sham arm exists to test.</p>
+  <p class="lede">On granite-4.0-h-small-FP8, the Fable operating manual raised the catch rate from 8/24 to 16/24, while a same-length placebo stayed flat at 7/24. That is the result the sham arm exists to test: specific procedures, not just careful-sounding text, may help a weaker model catch the buried error.</p>
 
   <section class="metric-grid" aria-label="Headline metrics">
     <div class="metric"><span class="metric-label">control</span><span class="metric-value">8/24</span></div>
@@ -214,7 +214,7 @@ def render(arm: dict, calib: dict, arm_path: Path, calib_path: Path) -> str:
   </section>
 
   <section class="prose">
-    <p>This run asks whether a reasoning operating manual authored by Fable changes a weaker model's actual answer on a single-turn trap. An operating manual here means a short set of reasoning-discipline procedures: re-derive a step by an independent route, run a disconfirming test, track provenance, and state the answer first. The outcome is not whether the model sounds careful. The outcome is whether it refuses to sign off and names the specific wrong step.</p>
+    <p>This run asks whether a reasoning operating manual authored by Fable can make a weaker small open model catch a real error it would otherwise ship. An operating manual here means a short set of reasoning-discipline procedures: re-derive a step by an independent route, run a disconfirming test, track provenance, and state the answer first. The outcome is not whether the model sounds careful. The outcome is whether it refuses to sign off and names the specific wrong step.</p>
     <p>The test has three arms. The control arm gets the worksheet and the sign-off question. The sham arm gets the same worksheet plus a same-length generic carefulness preamble with none of the manual's procedures. The manual arm gets the worksheet plus the actual Fable operating manual. The sham arm is the critical control because it separates content from priming, length, and careful-sounding language.</p>
   </section>
 
@@ -262,14 +262,14 @@ def render(arm: dict, calib: dict, arm_path: Path, calib_path: Path) -> str:
   </table>
 
   <section class="callout">
-    <p><strong>Why this run matters.</strong> Earlier runs did not have enough headroom: one saturated, and the Qwen3.6-35B-A3B-NVFP4 run redrew too cleanly to expose an effect. This run used {FULL_MODEL_NAME}, served locally as <code>granite-small</code>, because it is weak enough on these traps to make an outcome change measurable.</p>
+    <p><strong>Why this run matters.</strong> This is the first run where the manual appears to improve correctness rather than only style. Earlier runs did not have enough headroom: one saturated, and the Qwen3.6-35B-A3B-NVFP4 run redrew too cleanly to expose an effect. This run used {FULL_MODEL_NAME}, served locally as <code>granite-small</code>, because it is weak enough on these traps to make an outcome change measurable.</p>
   </section>
 
   <h2>Per-sample Evidence</h2>
   <section class="cards">{arm_cards}</section>
 
   <section class="callout warn">
-    <p><strong>Caveat.</strong> This is a small n=24 per-arm result, so the right claim is H1 signal, not a final reliability estimate. The next run should measure cons@k, which means majority-vote consistency over repeated samples, and pass^k, which means whether all repeated samples pass. That separates point-estimate accuracy from stability.</p>
+    <p><strong>Caveat.</strong> This is a small n=24 per-arm result, so the right claim is that the manual may help weaker models on this trap family, not that the effect size is settled. The next run should measure cons@k, which means majority-vote consistency over repeated samples, and pass^k, which means whether all repeated samples pass. That separates point-estimate accuracy from stability.</p>
   </section>
 
   <p class="generated">Generated {generated} from <code>{e(arm_path)}</code> and <code>{e(calib_path)}</code>. Template style: <code>reports/templates/powerstation-report.html</code>.</p>
