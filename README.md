@@ -117,11 +117,12 @@ today" above.
 | Terminal Bench hard subset | Agentic terminal tasks from the 75B model-card provenance set | planner finalist confirmation | pass@k + pass^k | planned |
 | HMMT Feb25 + GPQA | With-tools and no-tools reasoning probes from the 75B model-card provenance set | reviewer finalist confirmation | cons@k + pass^k | planned |
 
-Seat shorthand: **reviewer** reads and checks reasoning or code,
-**planner** chooses tools and orders work, and **implementer** writes
-code. The final public reports should separate selection runs from
-finalist-confirmation runs so model-card provenance does not get mixed
-with the cheaper full-panel sweeps.
+Seat shorthand follows the way Hillstar-style multi-agent
+orchestrators divide work: **reviewer** reads and checks reasoning or
+code, **planner** chooses tools and orders work, and **implementer**
+writes code or concrete artifacts. The final public reports should
+separate selection runs from finalist-confirmation runs so model-card
+provenance does not get mixed with the cheaper full-panel sweeps.
 
 </details>
 
