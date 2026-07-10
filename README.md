@@ -63,24 +63,16 @@ that ties both together.
 ## Working on today
 
 - **Run 5: Fable operating-manual trap battery on
-  granite-4.0-h-small-FP8.** This is the follow-up to the saturated
-  Sonnet runs and the underpowered Qwen3.6-35B-A3B-NVFP4 run. The
-  question is whether a Fable-authored reasoning operating manual
-  changes outcomes, not just framing: does the model stop shipping a
-  worksheet with a buried error, and can it name the wrong step and
-  correction? The design keeps the critical sham arm: control gets the
-  worksheet, sham gets a same-length generic carefulness preamble, and
-  manual gets the actual procedures, including independent
-  re-derivation, disconfirming tests, provenance, and answer-first
-  discipline. The four single-turn traps are E/M/H/X: dropped fixed
-  cost, 100% utilization sign-off, Simpson's paradox, and the 90-day
-  retention slip. Calibration runs control-only at n=16 per tier to
-  find a 25-75% control-fail band; the armed run then compares
-  control/sham/manual at n>=16 per arm. granite-4.0-h-small-FP8 is the
-  right model to try because it fails often enough for the manual to
-  have room to help: in the CRUXEval-O supplement it was wrong on 54
-  problems under both prompts, the largest genuine-error count of the
-  seven models.
+  granite-4.0-h-small-FP8, landed.** The tier-X arm run gave the manual
+  real headroom on the 90-day retention trap: control passed 8/24
+  (33%), sham passed 7/24 (29%), and the actual Fable manual passed
+  16/24 (67%). That is the first clean H1 signal in the series. The
+  same-length placebo manual did not move the model, while the real
+  operating manual lifted the catch rate by about 34 percentage points
+  over control. A pass required refusing sign-off and naming the specific
+  30-day versus 90-day storage error. [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b539f39d06e12c3ef13e5c9892ba7ee0/raw/fable-run5-granite.html) Next step is a reliability
+  rerun with cons@k and pass^k rather than treating the point estimate as
+  the whole result.
 
 - **CRUXEval-O cons@k follow-up.** The 184-problem prompt A/B is
   published; the next question is how much of the **wrong under both**
@@ -108,7 +100,7 @@ today" above.
 
 | benchmark / run | descriptor | role | metric | status |
 |---|---|---|---|---|
-| Fable operating-manual trap battery, Run 5 | Granite-small control/sham/manual test on E/M/H/X worksheet traps | reasoning discipline / reviewer stressor | calibration gate, then arm delta | running |
+| Fable operating-manual trap battery, Run 5 | granite-4.0-h-small-FP8 tier-X control/sham/manual run; 90-day retention trap; manual 16/24 vs control 8/24 and sham 7/24 | reasoning discipline / reviewer stressor | arm delta | done: H1 |
 | CRUXEval-O supplement cons@k | 184 code-tracing problems, repeated samples after prompt A/B | reviewer | cons@k + pass^k | running |
 | AIME 2024 + 2025 | 60-problem balanced reasoning subset across contamination-baseline and post-cutoff years | reviewer + planner | cons@k + pass^k | queued |
 | tool-eval-bench | Deterministic tool-use and multi-turn orchestration scenarios | planner | pass@k + pass^k / harness trials | planned |
@@ -276,6 +268,32 @@ the next move is either a still-weaker model (Nemotron-30B queued)
 that fails H ~30-50% reliably, or a multi-step task family where
 re-derivation has room to flip an answer.
 [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/d190c2c8ebb94651ae7db7dc680c7e9f/raw/screen_eval_run4.html)
+
+</details>
+
+<details>
+<summary><strong>Capability-grade screen (granite-4.0-h-small-FP8, Run 5), published, H1</strong></summary>
+
+Same control / sham / manual design, now on granite-4.0-h-small-FP8
+served locally as `granite-small`, plain non-thinking mode, temp 0.7.
+The calibration gate selected tier X, the 90-day retention /
+cumulative-storage worksheet trap, because control failed 10/16 times
+and therefore left real headroom.
+
+The armed run landed the first positive H1 signal in the series:
+control 8/24 (33%), sham 7/24 (29%), manual 16/24 (67%). The sham
+arm is the important comparison: a same-length carefulness preamble
+did not improve the model, while the actual Fable operating manual
+lifted the catch rate by about 34 percentage points over control. A
+pass required both refusing sign-off and naming the specific 30-day
+versus 90-day storage error.
+
+This is evidence for content-dependent capability transfer on this
+trap family, not just a nicer explanation style. The caveat is sample
+size: n=24 per arm gives a signal, not a final reliability estimate.
+The next step is the cons@k/pass^k rerun to measure whether the manual
+arm is stable across repeated samples.
+[Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b539f39d06e12c3ef13e5c9892ba7ee0/raw/fable-run5-granite.html)
 
 </details>
 
