@@ -62,6 +62,26 @@ that ties both together.
 
 ## Working on today
 
+- **Run 5: Fable operating-manual trap battery on
+  granite-4.0-h-small-FP8.** This is the follow-up to the saturated
+  Sonnet runs and the underpowered Qwen3.6-35B-A3B-NVFP4 run. The
+  question is whether a Fable-authored reasoning operating manual
+  changes outcomes, not just framing: does the model stop shipping a
+  worksheet with a buried error, and can it name the wrong step and
+  correction? The design keeps the critical sham arm: control gets the
+  worksheet, sham gets a same-length generic carefulness preamble, and
+  manual gets the actual procedures, including independent
+  re-derivation, disconfirming tests, provenance, and answer-first
+  discipline. The four single-turn traps are E/M/H/X: dropped fixed
+  cost, 100% utilization sign-off, Simpson's paradox, and the 90-day
+  retention slip. Calibration runs control-only at n=16 per tier to
+  find a 25-75% control-fail band; the armed run then compares
+  control/sham/manual at n>=16 per arm. granite-4.0-h-small-FP8 is the
+  right model to try because it fails often enough for the manual to
+  have room to help: in the CRUXEval-O supplement it was wrong on 54
+  problems under both prompts, the largest genuine-error count of the
+  seven models.
+
 - **CRUXEval-O cons@k follow-up.** The 184-problem prompt A/B is
   published; the next question is how much of the **wrong under both**
   floor survives repeated sampling and majority vote. I am rerunning
