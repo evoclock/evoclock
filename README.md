@@ -98,8 +98,8 @@ that ties both together.
 <summary><strong>Fable manual Run 5 and CRUXEval-O consistency tests — 10 July 2026 onward</strong></summary>
 
 The Run 5 and CRUXEval-O prompt A/B results were published on
-10 July 2026. The CRUXEval-O repeated-sampling follow-up remains in
-progress.
+10 July 2026. The CRUXEval-O repeated-sampling follow-up is incomplete
+and paused while the current Local Model Workforce tranche is active.
 
 - **Run 5: a reasoning manual may help weaker models catch real
   errors.** On granite-4.0-h-small-FP8, the Fable manual doubled the
