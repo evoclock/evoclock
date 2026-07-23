@@ -63,6 +63,14 @@ that ties both together.
 ## Working on today
 
 - **[Local Model Workforce](https://github.com/evoclock/local-model-workforce).**
+  This is the current phase of a longer design effort, not a project
+  started today. The architecture was planned before implementation
+  began in earnest on Friday, 17 July 2026. The work responds to a
+  recurring problem in agentic development: capable models can plan
+  useful work but still keep implementation inside an interactive
+  session, route inconsistently, overlook repository conventions, or
+  claim completion without current evidence.
+
   I am building a governed local-model system around portable roles:
   a 27B-35B Planner/Reviewer agrees the work, routes bounded
   implementation to a 4B-7B Implementer, and then reviews current
