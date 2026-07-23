@@ -1,0 +1,25 @@
+direction: down
+style.fill: "#18191a"
+
+classes: {
+  focus: { style: { fill: "#5c564f"; stroke: "#ee9b69"; stroke-width: 4; border-radius: 14; font-color: "#ead1b5"; font-size: 21; bold: true; shadow: true } }
+  system: { style: { fill: "#383431"; stroke: "#79c39e"; stroke-width: 4; border-radius: 14; font-color: "#ead1b5"; font-size: 20; bold: true; shadow: true } }
+  control: { style: { fill: "#4a4540"; stroke: "#e77843"; stroke-width: 4; border-radius: 14; font-color: "#ead1b5"; font-size: 20; bold: true; shadow: true } }
+}
+
+workforce: "LOCAL MODEL WORKFORCE\nTrain and qualify role-portable local models\nPlanner/Reviewer → Implementer → Reviewer" { class: focus; width: 720 }
+
+evidence: "GROUNDED EVIDENCE\nReal tasks · executable fixtures · receipts\nfamily-disjoint evaluation · improvement flywheel" { class: control; width: 680 }
+
+nuthatch: "NUTHATCH · KNOWLEDGE\nGrounded retrieval and read-only corpus access\nsupplies bounded evidence to the model roles" { class: system; width: 650 }
+hillstar: "HILLSTAR · ORCHESTRATION\nRoutes typed work between model roles\nand preserves workflow audit trails" { class: system; width: 650 }
+testudo: "TESTUDO · EXECUTION\nRuns generated code in a sandbox\nwith sanitisation and audit logs" { class: system; width: 650 }
+
+outcome: "GOVERNED LOCAL DELIVERY\nReason with the capable role · delegate bounded work\nverify current evidence · persist outcomes · improve from failures" { class: focus; width: 720 }
+
+workforce -> evidence: { style.stroke: "#ee9b69"; style.stroke-width: 4 }
+evidence -> nuthatch: { style.stroke: "#79c39e"; style.stroke-width: 4 }
+nuthatch -> hillstar: { style.stroke: "#ead1b5"; style.stroke-width: 4 }
+hillstar -> testudo: { style.stroke: "#ead1b5"; style.stroke-width: 4 }
+testudo -> outcome: { style.stroke: "#ead1b5"; style.stroke-width: 4 }
+outcome -> evidence: { style.stroke: "#e77843"; style.stroke-width: 4 }

@@ -62,6 +62,28 @@ that ties both together.
 
 ## Working on today
 
+- **[Local Model Workforce](https://github.com/evoclock/local-model-workforce).**
+  I am building a governed local-model system around portable roles:
+  a 27B-35B Planner/Reviewer agrees the work, routes bounded
+  implementation to a 4B-7B Implementer, and then reviews current
+  evidence. The work covers executable training examples, fine-tuning,
+  family-disjoint evaluation, mediated tools, durable receipts and a
+  flywheel that turns verified failures into better models or stronger
+  deterministic controls.
+
+  The aim is not only to fine-tune a small coding model. The aim is to
+  keep capable local reasoning while moving repeatable implementation
+  into a cheaper role that follows the agreed contract.
+
+<p align="center">
+  <img src="assets/local-model-workforce-overview.png" alt="Local Model Workforce and related tools" width="100%">
+</p>
+
+## Thoughts
+
+<details>
+<summary><strong>Recent benchmark work</strong></summary>
+
 - **Run 5: a reasoning manual may help weaker models catch real
   errors.** On granite-4.0-h-small-FP8, the Fable manual doubled the
   catch rate on the 90-day retention trap: control 8/24, sham 7/24,
@@ -81,7 +103,7 @@ that ties both together.
   when the model gets more than one deterministic-looking chance to land
   on the right literal.
 
-## Thoughts
+</details>
 
 <details>
 <summary><strong>Current benchmark queue</strong></summary>
