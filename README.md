@@ -83,6 +83,11 @@ that ties both together.
   keep capable local reasoning while moving repeatable implementation
   into a cheaper role that follows the agreed contract.
 
+  The diagram shows a candidate integration path. Nuthatch, Hillstar
+  and Testudo are related foundations, not a currently integrated
+  Local Model Workforce runtime. Each component requires adaptation
+  and qualification against the role contracts and control boundaries.
+
 <p align="center">
   <img src="assets/local-model-workforce-overview.png" alt="Local Model Workforce and related tools" width="100%">
 </p>
