@@ -62,34 +62,12 @@ that ties both together.
 
 ## Working on today
 
-- **[Local Model Workforce](https://github.com/evoclock/local-model-workforce).**
-  This is the current phase of a longer design effort, not a project
-  started today. The architecture was planned before implementation
-  began in earnest on Friday, 17 July 2026. The work responds to a
-  recurring problem in agentic development: capable models can plan
-  useful work but still keep implementation inside an interactive
-  session, route inconsistently, overlook repository conventions, or
-  claim completion without current evidence.
-
-  I am building a governed local-model system around portable roles:
-  a 27B-35B Planner/Reviewer agrees the work, routes bounded
-  implementation to a 4B-7B Implementer, and then reviews current
-  evidence. The work covers executable training examples, fine-tuning,
-  family-disjoint evaluation, mediated tools, durable receipts and a
-  flywheel that turns verified failures into better models or stronger
-  deterministic controls.
-
-  The aim is not only to fine-tune a small coding model. The aim is to
-  keep capable local reasoning while moving repeatable implementation
-  into a cheaper role that follows the agreed contract.
-
-  The diagram shows a candidate integration path. Nuthatch, Hillstar
-  and Testudo are related foundations, not a currently integrated
-  Local Model Workforce runtime. Each component requires adaptation
-  and qualification against the role contracts and control boundaries.
+- **Building a supervised local model workforce.** I fine-tuned a 4B model for a task-bound Implementer role and evaluated its behavioural adaptation and coding capability across 15 paired HumanEval+ runs. The operating model combines [routing and orchestration through Hillstar](https://github.com/evoclock/hillstar-orchestrator), [project knowledge and a GraphRAG KB through Nuthatch](https://github.com/evoclock/nuthatch), and [secure containerised execution through Testudo](https://github.com/evoclock/testudo) and [Firecracker microVMs](https://firecracker-microvm.github.io/), with scoped MCP servers and deterministic hooks at the relevant control boundaries. [Read the technical report ->](https://htmlpreview.github.io/?https://github.com/evoclock/local-model-workforce/blob/main/docs/publications/technical-report.html) [Read the project brief ->](https://htmlpreview.github.io/?https://github.com/evoclock/local-model-workforce/blob/main/docs/publications/project-brief.html)
 
 <p align="center">
-  <img src="assets/local-model-workforce-overview.png" alt="Local Model Workforce and related tools" width="100%">
+  <a href="https://github.com/evoclock/local-model-workforce/blob/main/docs/diagrams/00_workforce_overview.svg">
+    <img src="https://raw.githubusercontent.com/evoclock/local-model-workforce/main/docs/diagrams/00_workforce_overview.svg" alt="Local model workforce roles, tools and control boundaries" width="100%">
+  </a>
 </p>
 
 ## Thoughts
@@ -100,7 +78,6 @@ that ties both together.
 The Run 5 and CRUXEval-O prompt A/B results were published on
 10 July 2026. The CRUXEval-O repeated-sampling follow-up is incomplete
 and paused while the current Local Model Workforce tranche is active.
-
 - **Run 5: a reasoning manual may help weaker models catch real
   errors.** On granite-4.0-h-small-FP8, the Fable manual doubled the
   catch rate on the 90-day retention trap: control 8/24, sham 7/24,
