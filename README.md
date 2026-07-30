@@ -62,7 +62,14 @@ that ties both together.
 
 ## Working on today
 
-- **Building a supervised local model workforce.** I fine-tuned a 4B model for a task-bound Implementer role and evaluated its behavioural adaptation and coding capability across 15 paired HumanEval+ runs. The operating model combines [routing and orchestration through Hillstar](https://github.com/evoclock/hillstar-orchestrator), [project knowledge and a GraphRAG KB through Nuthatch](https://github.com/evoclock/nuthatch), and [secure containerised execution through Testudo](https://github.com/evoclock/testudo) and [Firecracker microVMs](https://firecracker-microvm.github.io/), with scoped MCP servers and deterministic hooks at the relevant control boundaries. [Read the technical report ->](https://htmlpreview.github.io/?https://github.com/evoclock/local-model-workforce/blob/main/docs/publications/technical-report.html) [Read the project brief ->](https://htmlpreview.github.io/?https://github.com/evoclock/local-model-workforce/blob/main/docs/publications/project-brief.html)
+- **New long-form article: [Why I Started Building a Local Multi-Model Workforce, and Why the Industry May Be Heading There Too](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/7a3df9abefc5f6b3d43280fde07ec688/raw/758d0a6b1cf126257e19862d90bd4c8449bdff79/local-multi-model-workforce.html).** I explain how a self-directed effort to make my PhD work manageable alongside a full-time job developed into a governed multi-model architecture, the evidence that motivated it, the products built around it, and why similar systems may soon become an internal organisational capability.
+
+## Thoughts
+
+<details>
+<summary><strong>Building a supervised local model workforce</strong></summary>
+
+I fine-tuned a 4B model for a task-bound Implementer role and evaluated its behavioural adaptation and coding capability across 15 paired HumanEval+ runs. The operating model combines [routing and orchestration through Hillstar](https://github.com/evoclock/hillstar-orchestrator), [project knowledge and a GraphRAG KB through Nuthatch](https://github.com/evoclock/nuthatch), and [secure containerised execution through Testudo](https://github.com/evoclock/testudo) and [Firecracker microVMs](https://firecracker-microvm.github.io/), with scoped MCP servers and deterministic hooks at the relevant control boundaries. [Read the technical report ->](https://htmlpreview.github.io/?https://github.com/evoclock/local-model-workforce/blob/main/docs/publications/technical-report.html) [Read the project brief ->](https://htmlpreview.github.io/?https://github.com/evoclock/local-model-workforce/blob/main/docs/publications/project-brief.html)
 
 <p align="center">
   <a href="https://github.com/evoclock/local-model-workforce/blob/main/docs/diagrams/00_workforce_overview.svg">
@@ -70,7 +77,7 @@ that ties both together.
   </a>
 </p>
 
-## Thoughts
+</details>
 
 <details>
 <summary><strong>Fable manual Run 5 and CRUXEval-O consistency tests — 10 July 2026 onward</strong></summary>
