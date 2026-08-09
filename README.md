@@ -120,7 +120,7 @@ confirmation probes do not get mixed with the cheaper full-panel sweeps.
 Everything below is published at <a href="https://evoclock.github.io/fieldnotes/">evoclock.github.io/fieldnotes</a>, and new pieces appear in the 
 <a href="https://evoclock.github.io/fieldnotes/feed.xml">RSS feed</a>.</sub></p>
 
-<details open>
+<details>
 <summary><strong>Agent systems</strong> (2)</summary>
 
 Harnesses, gates, sandboxes, orchestration, and the products built on them.
@@ -137,7 +137,7 @@ Harnesses, gates, sandboxes, orchestration, and the products built on them.
 
 </details>
 
-<details open>
+<details>
 <summary><strong>Models</strong> (4)</summary>
 
 Adapting models to a job, and serving them on hardware I own.
@@ -162,7 +162,7 @@ Adapting models to a job, and serving them on hardware I own.
 
 </details>
 
-<details open>
+<details>
 <summary><strong>Evaluation</strong> (10)</summary>
 
 Designing a study, running it, and reporting what it did and did not show.
@@ -211,7 +211,7 @@ Designing a study, running it, and reporting what it did and did not show.
 
 </details>
 
-<details open>
+<details>
 <summary><strong>Computational biology</strong> (1)</summary>
 
 Circadian genomics, phenome classification, and disease modelling.
