@@ -6,12 +6,10 @@
   </picture>
 </p>
 
-ML/AI engineer. Currently evaluating and hardening local LLMs on a
-DGX Spark at home. Less interested in which model is generally
+ML/AI engineer. Less interested in which model is generally
 smartest, more in which specific capabilities hold up under the
 conditions I actually run models in: life-science workloads,
-reproducibility of academic-publication pipelines, and the coding
-that ties both together.
+reproducibility of academic-publication pipelines, and the infrastructure that make it possible.
 
 ![status: ongoing series](https://img.shields.io/badge/benchmark-series%20in%20progress-0f6e69?style=flat-square)
 
@@ -62,49 +60,22 @@ that ties both together.
 
 ## Working on today
 
-- **New long-form article: [Why I Started Building a Local Multi-Model Workforce, and Why the Industry May Be Heading There Too](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/7a3df9abefc5f6b3d43280fde07ec688/raw/758d0a6b1cf126257e19862d90bd4c8449bdff79/local-multi-model-workforce.html).** I explain how a self-directed effort to make my PhD work manageable alongside a full-time job developed into a governed multi-model architecture, the evidence that motivated it, the products built around it, and why similar systems may soon become an internal organisational capability.
+A live feed of what is actually in progress.
 
-## Thoughts
+- **MicroVM-isolated autonomous agents.** A supervisor across the Mac, Linux and
+  Spark hosts, so an agent can work to a spec overnight inside a VM it cannot
+  reach out of, and deposit finished work on a branch for review. Signed leases,
+  runtime attestation and capability tokens are built and validated; the
+  supervisor, the vsock transport and the host-side publisher are next.
 
-<details>
-<summary><strong>Building a supervised local model workforce</strong></summary>
+- **[prime-agent-cantus](https://github.com/evoclock/prime-agent-cantus).** Two
+  launch profiles for [Prime Agent](https://github.com/PrimeIntellect-ai/prime-agent)
+  so autonomous and interactive work share one harness, with a checkpoint before
+  risky actions and screening of results before they reach a model.
 
-I fine-tuned a 4B model for a task-bound Implementer role and evaluated its behavioural adaptation and coding capability across 15 paired HumanEval+ runs. The operating model combines [routing and orchestration through Hillstar](https://github.com/evoclock/hillstar-orchestrator), [project knowledge and a GraphRAG KB through Nuthatch](https://github.com/evoclock/nuthatch), and [secure containerised execution through Testudo](https://github.com/evoclock/testudo) and [Firecracker microVMs](https://firecracker-microvm.github.io/), with scoped MCP servers and deterministic hooks at the relevant control boundaries. [Read the technical report ->](https://htmlpreview.github.io/?https://github.com/evoclock/local-model-workforce/blob/main/docs/publications/technical-report.html) [Read the project brief ->](https://htmlpreview.github.io/?https://github.com/evoclock/local-model-workforce/blob/main/docs/publications/project-brief.html)
-
-<p align="center">
-  <a href="https://github.com/evoclock/local-model-workforce/blob/main/docs/diagrams/00_workforce_overview.svg">
-    <img src="https://raw.githubusercontent.com/evoclock/local-model-workforce/main/docs/diagrams/00_workforce_overview.svg" alt="Local model workforce roles, tools and control boundaries" width="100%">
-  </a>
-</p>
-
-</details>
-
-<details>
-<summary><strong>Fable manual Run 5 and CRUXEval-O consistency tests — 10 July 2026 onward</strong></summary>
-
-The Run 5 and CRUXEval-O prompt A/B results were published on
-10 July 2026. The CRUXEval-O repeated-sampling follow-up is incomplete
-and paused while the current Local Model Workforce tranche is active.
-- **Run 5: a reasoning manual may help weaker models catch real
-  errors.** On granite-4.0-h-small-FP8, the Fable manual doubled the
-  catch rate on the 90-day retention trap: control 8/24, sham 7/24,
-  manual 16/24. The placebo did nothing, so the signal is the manual's
-  procedures, not generic carefulness. Caveat: n=24 per arm. [Read the
-  writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b539f39d06e12c3ef13e5c9892ba7ee0/raw/fable-run5-granite.html)
-
-- **CRUXEval-O cons@k follow-up.** The 184-problem prompt A/B is
-  published; the next question is how much of the **wrong under both**
-  floor survives repeated sampling and majority vote. I am rerunning
-  the same code-tracing set with multiple samples per problem across
-  Nemotron-3-Super-120B-A12B-NVFP4, gemma-4-26B-A4B-it,
-  Ornith-1.0-35B-FP8, Holo-3.1-35B-A3B-NVFP4,
-  Qwen3.6-35B-A3B-NVFP4, Nemotron-3-Nano-30B-A3B-NVFP4,
-  and granite-4.0-h-small-FP8. The A/B floor is an upper bound; cons@k
-  asks which genuine tracing errors are stable and which ones disappear
-  when the model gets more than one deterministic-looking chance to land
-  on the right literal.
-
-</details>
+- **[Circadian ChIP-seq reproducibility audit](https://github.com/evoclock/Circadian-ChIP-seq-reproducibility-audit).**
+  Published. Extending the sensitivity analysis and the local ENCODE-equivalent
+  comparison.
 
 <details>
 <summary><strong>Current benchmark queue</strong></summary>
@@ -136,272 +107,119 @@ confirmation probes do not get mixed with the cheaper full-panel sweeps.
 
 </details>
 
-<details>
-<summary><strong>I recently got a DGX Spark, then I got curious</strong></summary>
+## Fieldnotes: technical reports, experiments, evals and thoughts
 
-DGX Spark at home, more ideas than time, and a specific use case pulling
-harder than the others. The general question I keep coming back to isn't
-"which model is generally smarter"; it's "which model holds the *seat*
-I need it to hold, and what do I do when it doesn't." That decomposes
-into three things I want a battery to actually measure:
+<p align="center">
+  <a href="https://evoclock.github.io/fieldnotes/">
+    <img src="assets/Sentoku-origami-removebg-preview.png" alt="fieldnotes" width="150">
+  </a>
+</p>
 
-- Per-model failure modes: what does this model get wrong, and under
-  what conditions? Authority pressure, buried ledes, re-derivation,
-  drift under a long context, the things a leaderboard score doesn't
-  surface.
-- Per-seat benchmarking: different roles in an agentic setup (planner,
-  retriever, executor, critic) need different strengths. A general
-  benchmark averages over the wrong axis; I want to know which model
-  wins which seat, and on what evidence.
-- Intervention levels: when a model fails, the fix lives at one of
-  several levels, fine-tuning, harness engineering, prompt/context
-  distillation, OPRO / promptbreeding-style search. Different failures
-  want different fixes; conflating them is the expensive mistake.
+<p align="center"><strong><a href="https://evoclock.github.io/fieldnotes/">fieldnotes</a></strong><br>
+<sub>Agent systems, models, evaluation and computational biology.<br>
+Everything below is published at <a href="https://evoclock.github.io/fieldnotes/">evoclock.github.io/fieldnotes</a>, and new pieces appear in the 
+<a href="https://evoclock.github.io/fieldnotes/feed.xml">RSS feed</a>.</sub></p>
 
-What I want from a benchmark, broadly:
+<details open>
+<summary><strong>Agent systems</strong> (2)</summary>
 
-- A pass-or-fail signal on the thing the model is actually being
-  asked to do, not a composite score.
-- A way to see which failure mode fires when it fails, not just that
-  it failed.
-- A methodology that points at which rung of the intervention ladder
-  the result wants, based on what the eval surfaces, not on what was
-  assumed going in.
+Harnesses, gates, sandboxes, orchestration, and the products built on them.
+
+<img src="assets/Shibuichi-origami-removebg-preview.png" alt="" width="58" align="right">
+
+- **[Memory management for LLM-on-corpus](https://evoclock.github.io/fieldnotes/notes/memory-management.html)**  
+  <sub>Note · agent systems · 9 August 2026</sub>  
+  Parametric state, chain-of-thought, flat RAG and graph-RAG are four answers to the same question, and the partitioning algorithm separates the principled tools from the rest.
+
+- **[Why I Started Building a Local Multi-Model Workforce, and Why the Industry May Be Heading There Too](https://evoclock.github.io/fieldnotes/articles/local-multi-model-workforce.html)**  
+  <sub>Multi-model systems · 30 July 2026</sub>  
+  How a self-directed effort grew into a supervised multi-model architecture, a set of working products, and an emerging professional direction.
 
 </details>
 
-<details>
-<summary><strong>Memory management for LLM-on-corpus</strong></summary>
+<details open>
+<summary><strong>Models</strong> (4)</summary>
 
-Not an exhaustive list, but if you have an interest in memory
-management, these are some of the areas I have been experimenting on
-or validating against:
+Adapting models to a job, and serving them on hardware I own.
 
-- **Parametric** (Mamba, SSMs, Jamba hybrids; [Gu & Dao
-  2023](https://arxiv.org/abs/2312.00752)) compresses context into a
-  bounded recurrent state during inference. Deterministic for a given
-  input, ephemeral across calls.
-- **Chain-of-thought.** The model's own scratchpad; pays tokens for
-  working memory on every call. Poor ROI for the token cost and
-  overhead.
-- **External flat RAG** (vector similarity, BM25). Memory in an index;
-  freshness wins, recall is bounded by embedding quality.
-- **Graph-RAG.** Same external memory, but with structure (nodes,
-  edges, communities). The partitioning algorithm is what separates
-  the principled tools from the embedding-only ones. Microsoft's
-  GraphRAG uses [Leiden community
-  detection](https://arxiv.org/abs/2404.16130); [nuthatch](https://github.com/evoclock/nuthatch)
-  is the proprietary SBM-based entry in this space.
+<img src="assets/Shibuichi-origami-removebg-preview.png" alt="" width="58" align="right">
 
-Worth saying why frontier labs might not be too eager to solve this:
-the more rounds you need to take to solve a problem, the more tokens
-you burn, and that is ultimately in their commercial interest.
+- **[Building a 4B Local Implementer](https://evoclock.github.io/fieldnotes/publications/project-brief.html)**  
+  <sub>LLM fine-tuning · 29 July 2026</sub>  
+  The task-bound Implementer, its behavioural adaptation, repeated coding evaluation, evidence flywheel and next steps.
+
+- **[Building a 4B Local Implementer: technical report](https://evoclock.github.io/fieldnotes/publications/technical-report.html)**  
+  <sub>Technical report · 27 July 2026</sub>  
+  Training regime, paired evaluation across fifteen HumanEval+ runs, and what the numbers do and do not support.
+
+- **[The prompt is not the model](https://evoclock.github.io/fieldnotes/evals/cruxeval-o-ab-184.html)**  
+  <sub>CRUXEval-O · A/B · 10 July 2026</sub>  
+  Seven models over 184 output-prediction problems. The headline change is meaningless on its own, the effect is bimodal, and the real signal is the floor.
+
+- **[Seven local models on output prediction](https://evoclock.github.io/fieldnotes/evals/cruxeval-o-results.html)**  
+  <sub>CRUXEval-O · reviewer seat · 8 July 2026</sub>  
+  100 Python problems, graded strictly at Pass@1 and reported together with its prompt, infrastructure and harness failures.
 
 </details>
 
-<details>
-<summary><strong>Fable trap battery eval (Sonnet 5 A/B), published</strong></summary>
+<details open>
+<summary><strong>Evaluation</strong> (10)</summary>
 
-9 traps across 8 failure modes, control arm vs the arm that read a
-reasoning "operating manual" written by Claude Fable 5. 9/9 pass on
-both arms; the manual lifted the fingerprint score (3.6 -> 4.9 / 5)
-without changing which traps fired. The framing for this one came from
-a post on X by
-[@alex_prompter](https://x.com/alex_prompter/status/2074186423121690765)
-suggesting the Fable 5 operating manual should be portable into
-Opus 4.8. The trap battery was a way of testing whether "portable"
-means *capability* or *communication discipline*. The eval lands on
-the latter. [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/d80dd9b13ac8f7c2e8f9565285702588/raw/trap_eval.html)
+Designing a study, running it, and reporting what it did and did not show.
 
-</details>
+<img src="assets/Sentoku-origami-removebg-preview.png" alt="" width="58" align="right">
 
-<details>
-<summary><strong>Capability-grade screen (Sonnet 5, Run 3), published, uninformative by design</strong></summary>
+- **[Circadian ChIP-seq reproducibility audit](https://evoclock.github.io/fieldnotes/compbio/circadian-chipseq-audit.html)**  
+  <sub>Reproducibility audit · 9 August 2026</sub>  
+  A method reconstruction, sensitivity analysis and local ENCODE-equivalent comparison for public mouse liver circadian factor ChIP-seq. No tested condition reproduced both the deposited peak counts and the peak sets.
 
-Three arms (control / sham / real manual) on three difficulty tiers
-(easy / medium / hard), n=3 per cell = 27 agents, single-turn, model
-held constant. Result: 27/27 pass. Control, sham, and manual all
-correct at every tier, including hard. The pre-registered calibration
-gate fired as designed: control must fail 25-75% to give the manual
-headroom, and it failed 0%, so by the rule all three tasks are cut.
-With no failures to flip, this run is uninformative about capability,
-not evidence the manual doesn't help, just evidence this task family
-can't test it at Sonnet tier.
+- **[Which model holds the seat, and what to do when it does not](https://evoclock.github.io/fieldnotes/notes/seat-benchmarking.html)**  
+  <sub>Note · evaluation methodology · 9 August 2026</sub>  
+  A leaderboard averages over the wrong axis. What matters is which model wins which seat, on what evidence, and which rung of the intervention ladder a failure points at.
 
-The sham arm did its job. On correctness, sham = manual = control.
-On style, manual > sham > control, but the sham closed most of the
-care-gap, so the style effect is mostly priming ("any careful-sounding
-preamble"), not the manual's specific procedures. The markers unique
-to the real manual (provenance grades, named disconfirming test,
-explicit independent re-derivation route) appear only in the manual
-arm; the shared "careful-sounding prose" is what the sham reproduces.
+- **[6.6W versus 35W, and a desk-scale PUE argument](https://evoclock.github.io/fieldnotes/notes/watts-per-token.html)**  
+  <sub>Note · running the hardware · 9 August 2026</sub>  
+  Sustained eval workloads are watts-bound on a desk-scale box, and the fan moving air through a hot chassis is a bigger share of that than it looks.
 
-Three converging runs at the same wall: Run 1 (Opus control vs
-placebo manual, never read the file), Run 2 (Sonnet + real manual,
-single-turn), Run 3 (Sonnet + sham + 3 tiers). All three saturate.
-The ceiling is the model, not the manual. The recommended next step
-is a weaker base model that fails these single-turn traps 30-50% of
-the time, reusing the whole battery + sham design unchanged. Run 4
-picked that up (Qwen3.6-35B local vLLM, H0) and is published
-below. [Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b253c018f36e262b1e1abff72a46e7ae/raw/screen_eval.html)
+- **[Building a 4B Local Implementer: technical report](https://evoclock.github.io/fieldnotes/publications/technical-report.html)**  
+  <sub>Technical report · 27 July 2026</sub>  
+  Training regime, paired evaluation across fifteen HumanEval+ runs, and what the numbers do and do not support.
 
-</details>
+- **[A reasoning manual helped a small model catch the trap](https://evoclock.github.io/fieldnotes/evals/fable-run5-granite.html)**  
+  <sub>Operating manual · run 5 · 10 July 2026</sub>  
+  On granite-4.0-h-small-FP8 the manual raised the catch rate from 8/24 to 16/24, while a same-length placebo did nothing. Small n, stated plainly.
 
-<details>
-<summary><strong>Capability-grade screen (Qwen3.6-35B, Run 4), published, H0</strong></summary>
+- **[The prompt is not the model](https://evoclock.github.io/fieldnotes/evals/cruxeval-o-ab-184.html)**  
+  <sub>CRUXEval-O · A/B · 10 July 2026</sub>  
+  Seven models over 184 output-prediction problems. The headline change is meaningless on its own, the effect is bimodal, and the real signal is the floor.
 
-Same three-arm battery, single-turn, sham manual unchanged. The
-change is the model: Sonnet is gone, Qwen3.6-35B served locally via
-vLLM, thinking off, temp 0.7, n=8 per arm. Plus a new harder trap (X:
-a 90-day retention / cumulative-storage worksheet where the agent had
-to catch the days-in-month vs retention substitution, a 3x cost
-understatement).
+- **[The gate opened, and the manual still moved nothing](https://evoclock.github.io/fieldnotes/evals/screen_eval_run4.html)**  
+  <sub>Capability screen · run 4 · 8 July 2026</sub>  
+  A weaker base model and a harder trap gave the manual room to show a capability effect. It did not.
 
-First time the calibration gate opened. The hard Simpson's reversal
-calibrated at 2/8 control fail (25%), brushing the bottom of the
-pre-registered 25-75% headroom band. The new X trap saturated at
-0/8 control fail and was not armed. Run the 3-arm test on H with
-the gate open.
+- **[Seven local models on output prediction](https://evoclock.github.io/fieldnotes/evals/cruxeval-o-results.html)**  
+  <sub>CRUXEval-O · reviewer seat · 8 July 2026</sub>  
+  100 Python problems, graded strictly at Pass@1 and reported together with its prompt, infrastructure and harness failures.
 
-H0, no capability effect. The arm run's independent control draw
-produced 0/8 fails. Sham 8/8, manual 8/8, control 8/8. The 25% vs
-0% gap across the two draws is sampling noise at n=8 and temp 0.7,
-not a contradiction. The pre-registered rule calls all-arms-within-
-15pp as H0, and that is the verdict. Headroom was marginal, not
-durable, so there were no failures for the manual to flip.
+- **[The manual moved only the labels](https://evoclock.github.io/fieldnotes/evals/screen_eval.html)**  
+  <sub>Capability screen · run 3 · 7 July 2026</sub>  
+  Three arms, three tiers and twenty-seven agents, with a sham arm so a real capability effect would have had room to appear.
 
-The one genuine methodological learning is buried-reversal grading.
-Qwen sometimes opens with the wrong verdict, re-derives mid-answer,
-and lands on the right one in a labelled Conclusion or Recommendation
-section. A naive first-word grader marks these wrong. The grader
-now reads the labelled conclusion (falling back to the opening only
-when there is no label) and strips markdown emphasis so `do **not**
-ship` still parses as a negation. Every graded row was eyeballed
-against the full answer; the FAILs are genuine ships-of-B.
-
-Four runs converge. Sonnet (runs 1-3) saturates. Qwen3.6-35B
-brushes the gate on H but can't sustain it. The single-turn
-verify-an-artifact family is done. To detect a capability effect
-the next move is either a still-weaker model (Nemotron-30B queued)
-that fails H ~30-50% reliably, or a multi-step task family where
-re-derivation has room to flip an answer.
-[Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/d190c2c8ebb94651ae7db7dc680c7e9f/raw/screen_eval_run4.html)
+- **[It changed how the work was shown, not what was caught](https://evoclock.github.io/fieldnotes/evals/trap_eval.html)**  
+  <sub>Trap battery · A/B · 7 July 2026</sub>  
+  Nine traps, model held constant, one arm reading the operating manual and one not.
 
 </details>
 
-<details>
-<summary><strong>Capability-grade screen (granite-4.0-h-small-FP8, Run 5), published, H1</strong></summary>
+<details open>
+<summary><strong>Computational biology</strong> (1)</summary>
 
-The important result is direct: on a weaker small open model, the
-Fable operating manual appears to help catch a real buried reasoning
-error. granite-4.0-h-small-FP8 was served locally as `granite-small`,
-plain non-thinking mode, temp 0.7. Calibration selected tier X, the
-90-day retention / cumulative-storage worksheet trap, because control
-failed 10/16 times and therefore left room for the manual to matter.
+Circadian genomics, phenome classification, and disease modelling.
 
-The armed run landed the first positive H1 signal in the series:
-control 8/24 (33%), sham 7/24 (29%), manual 16/24 (67%). The sham arm
-is the key comparison. A same-length carefulness preamble did not help,
-while the real Fable operating manual lifted the catch rate by about 34
-percentage points over control. A pass required both refusing sign-off
-and naming the specific 30-day versus 90-day storage error.
+<img src="assets/Yamagane-origami-removebg-preview.png" alt="" width="58" align="right">
 
-This is evidence that the manual's specific procedures may transfer
-useful reasoning discipline to a small model on this trap family. The
-caveat is sample size: n=24 per arm gives a signal, not a final
-reliability estimate. The next step is the cons@k/pass^k rerun to see
-whether the manual arm stays stable across repeated samples.
-[Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/b539f39d06e12c3ef13e5c9892ba7ee0/raw/fable-run5-granite.html)
-
-</details>
-
-<details>
-<summary><strong>CRUXEval-O 100-problem run (7 local models), published</strong></summary>
-
-First published instance of the reviewer-seat battery. 100 CRUXEval-O
-problems (a subset, not classified by difficulty), 7 local models,
-Python output prediction, deterministic grading via
-`ast.literal_eval`. Final scores: Nemotron-3-Super-120B-A12B-NVFP4 98,
-gemma-4-26B-A4B-it 98, Qwen3.6-35B-A3B-NVFP4 97,
-Nemotron-3-Nano-30B-A3B-NVFP4 96, Ornith-1.0-35B-FP8 94,
-Holo-3.1-35B-A3B-NVFP4 88, granite-4.0-h-small-FP8 81.
-All 7 cards clean: 0 prompt/parse/harness exclusions.
-
-The 18-point spread across 7 models is narrower than the raw
-numbers suggest. Most of the headroom gap was prompt/parse artifact,
-not model inability. The published writeup walks through every
-fix: the gemma-4-26B-A4B-it code-reproduction recovery
-(80 → 98), the Qwen3.6-35B-A3B-NVFP4 metavariable + example-answer + reasoning-bleed fix chain (84 → 97
-across four prompt variants), the parse fix that recovered
-trailing-junk false-fails across Qwen3.6-35B-A3B-NVFP4 and
-Ornith-1.0-35B-FP8, and the targeted reruns on reasoning-bleed
-fails for Ornith-1.0-35B-FP8 and Holo-3.1-35B-A3B-NVFP4. Read
-the gist for the per-problem verdict and the issue log.
-
-**Failure-mode distribution (post-clean, all genuine fails).**
-Across the 7 models, 48 fail-pairs hit 28 distinct problems. 43
-common (≥2 models hit the same problem, 90% of the pairs); 5
-unique (1 model only, 10%). The common/unique split is the
-substantive finding, not the scoreboard: a battery that surfaces
-mostly common fails is testing *failure modes*, not *model
-idiosyncrasies*. The 184-problem supplement published below
-over-samples the high-frequency common modes to push this further.
-
-The dominant mode is string-transform errors: off-by-char (10
-pairs), truncation (5), case (3), short-string overproduce (2),
-other (2) = 22 of 48 pairs (~46%). Container-shape errors are
-the second cluster (~23%). The single hardest mode is
-`dict_string` (4 models fail the one problem, s33), and only 1
-more `dict_string` problem exists in the remaining 700, a hard
-anchor that cannot be grown as a stratum. Numeric errors are
-entirely unique to granite-4.0-h-small-FP8, confirming the weighting rule:
-large pool, single-model, rare, so over-sampling numeric is
-noise.
-
-The data is what seeded the supplement (Regime B stratification)
-and the failure-mode-driven analysis in
-`benchmark-failure-modes.md`.
-[7-model scoreboard ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/5c294ce71af4d67c8d7580a83a4ab512/raw/cruxeval-o-results.html)
-
-</details>
-
-<details>
-<summary><strong>CRUXEval-O supplement A/B (184 problems, published)</strong></summary>
-
-A follow-up to the first CRUXEval-O run, using 184 code-tracing
-problems across the same local-model setup on the DGX Spark. The
-models were Nemotron-3-Super-120B-A12B-NVFP4, gemma-4-26B-A4B-it,
-Ornith-1.0-35B-FP8, Holo-3.1-35B-A3B-NVFP4,
-Qwen3.6-35B-A3B-NVFP4, Nemotron-3-Nano-30B-A3B-NVFP4, and
-granite-4.0-h-small-FP8. Each model saw the same problems under the
-baseline prompt and under a cleaner prompt plus a short per-model
-system message.
-
-The aggregate prompt delta is the wrong story. The effect is bimodal:
-Holo-3.1-35B-A3B-NVFP4 and granite-4.0-h-small-FP8 gain because the
-new prompt recovers formatting failures, while gemma-4-26B-A4B-it and
-Qwen3.6-35B-A3B-NVFP4 regress because the mitigation breaks previously
-correct answers. The useful signal is the **wrong under both** floor
-after parser recovery. By that floor, the ranking is
-Nemotron-3-Super-120B-A12B-NVFP4 (3), gemma-4-26B-A4B-it (6),
-Ornith-1.0-35B-FP8 (9), Qwen3.6-35B-A3B-NVFP4 (12),
-Nemotron-3-Nano-30B-A3B-NVFP4 (16), Holo-3.1-35B-A3B-NVFP4 (42),
-granite-4.0-h-small-FP8 (54). The next experiment is cons@k voting:
-repeat the task and see how much of that floor survives majority vote.
-
-[Read the writeup ->](https://htmlpreview.github.io/?https://gist.githubusercontent.com/evoclock/5536ccec2b848b588ec4adaceefa20ef/raw/cruxeval-o-ab-184.html)
-
-</details>
-
-
-<details>
-<summary><strong>On cooling: 6.6W versus 35W, watts-per-token, and a desk-scale PUE argument</strong></summary>
-
-Sustained eval workloads are watts-bound on a desk-scale box. Using
-an external Noctua NF-A14 industrialPPC-3000 (drawing 6.6W versus
-the ~35W a desk fan pulls to move the same air through a hot chassis)
-keeps watts-per-token down. That saves on power and prolongs the
-hardware, and the watts/token argument is the main one. Same idea as
-a datacenter PUE argument, just at desk scale.
+- **[Circadian ChIP-seq reproducibility audit](https://evoclock.github.io/fieldnotes/compbio/circadian-chipseq-audit.html)**  
+  <sub>Reproducibility audit · 9 August 2026</sub>  
+  A method reconstruction, sensitivity analysis and local ENCODE-equivalent comparison for public mouse liver circadian factor ChIP-seq. No tested condition reproduced both the deposited peak counts and the peak sets.
 
 </details>
