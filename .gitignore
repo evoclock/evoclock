@@ -3,3 +3,5 @@ attractors/
 __pycache__/
 *.pyc
 reports/output/
+.DS_Store
+.worktrees/
