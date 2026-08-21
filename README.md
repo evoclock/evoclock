@@ -124,11 +124,15 @@ confirmation probes do not get mixed with the cheaper full-panel sweeps.
 </p>
 
 <details>
-<summary><strong>Agent systems</strong> (2)</summary>
+<summary><strong>Agent systems</strong> (3)</summary>
 
 Harnesses, gates, sandboxes, orchestration, and the products built on them.
 
 <img src="assets/Shibuichi-origami-removebg-preview.png" alt="" width="58" align="right">
+
+- **[And the Simpsons Already Did It](https://evoclock.github.io/fieldnotes/articles/primitives-were-already-there.html)**<br>
+  <sub>Standards and prior art · 21 August 2026</sub><br>
+  Why AI infrastructure keeps rediscovering established primitives, and how to distinguish useful standardisation from inflated novelty claims.
 
 - **[Memory management for LLM-on-corpus](https://evoclock.github.io/fieldnotes/notes/memory-management.html)**  
   <sub>Note · agent systems · 9 August 2026</sub>  
