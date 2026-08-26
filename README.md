@@ -73,9 +73,17 @@ A live feed of what is actually in progress.
   so autonomous and interactive work share one harness, with a checkpoint before
   risky actions and screening of results before they reach a model.
 
+- **[Methods-review extension](https://academic.oup.com/jamia/advance-article-abstract/doi/10.1093/jamia/ocag108/8709914?redirectedFrom=fulltext&login=false).** I am working on an extension to this paper that addresses the methodological approaches the authors did not pursue before making the claims in the original paper. I have invited the authors to collaborate on the extension and hope to be able to do so, but the work will be published regardless.
+
+- **Pi harness and Scientific Workbench.** I have been working on modifications
+  to my Pi harness and continuing work on my Scientific Workbench. The harness,
+  as captured by the [System Atlas skill](https://github.com/inkboard/system-atlas),
+  is below.
+
+<img src="assets/pi-harness-atlas.png" alt="Pi harness captured by the System Atlas skill, showing work modes, lifecycle stages, roles, evidence and host boundaries" width="100%">
+
 - **[Circadian ChIP-seq reproducibility audit](https://github.com/evoclock/Circadian-ChIP-seq-reproducibility-audit).**
-  Published. Extending the sensitivity analysis and the local ENCODE-equivalent
-  comparison.
+  Wrapping up the audit work before the [DNABERT-2 fine-tune](https://github.com/evoclock/DNABERT-2-mouse-ft), which was postponed to next weekend.
 
 <details>
 <summary><strong>Current benchmark queue</strong></summary>
@@ -124,11 +132,15 @@ confirmation probes do not get mixed with the cheaper full-panel sweeps.
 </p>
 
 <details>
-<summary><strong>Agent systems</strong> (3)</summary>
+<summary><strong>Agent systems</strong> (4)</summary>
 
 Harnesses, gates, sandboxes, orchestration, and the products built on them.
 
 <img src="assets/Shibuichi-origami-removebg-preview.png" alt="" width="58" align="right">
+
+- **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
+  <sub>Qwen serving · 26 August 2026</sub><br>
+  How I manage Qwen's tendency to go off on a long reasoning run, why completion limits are not enough, and where quantisation creates a second serving problem.
 
 - **[And the Simpsons Already Did It](https://evoclock.github.io/fieldnotes/articles/primitives-were-already-there.html)**<br>
   <sub>Standards and prior art · 21 August 2026</sub><br>
@@ -145,11 +157,15 @@ Harnesses, gates, sandboxes, orchestration, and the products built on them.
 </details>
 
 <details>
-<summary><strong>Models</strong> (4)</summary>
+<summary><strong>Models</strong> (5)</summary>
 
 Adapting models to a job, and serving them on hardware I own.
 
 <img src="assets/Shibuichi-origami-removebg-preview.png" alt="" width="58" align="right">
+
+- **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
+  <sub>Qwen serving · 26 August 2026</sub><br>
+  How I manage Qwen's tendency to go off on a long reasoning run, why completion limits are not enough, and where quantisation creates a second serving problem.
 
 - **[Building a 4B Local Implementer](https://evoclock.github.io/fieldnotes/publications/project-brief.html)**  
   <sub>LLM fine-tuning · 29 July 2026</sub>  
