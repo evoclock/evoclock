@@ -71,6 +71,10 @@ A live feed of what is actually in progress.
 
 <img src="assets/pi-harness-atlas.png" alt="Pi harness captured by the System Atlas skill, showing work modes, lifecycle stages, roles, evidence and host boundaries" width="100%">
 
+- **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
+  <sub>Qwen serving · 26 August 2026</sub><br>
+  How I manage Qwen's tendency to go off on a long reasoning run, why completion limits are not enough, and where quantisation creates a second serving problem.
+
 ## Fieldnotes: technical reports, experiments, evals and thoughts
 
 <p align="center">
