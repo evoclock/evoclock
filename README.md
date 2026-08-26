@@ -62,17 +62,6 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
 
 A live feed of what is actually in progress.
 
-- **MicroVM-isolated autonomous agents.** A supervisor across the Mac, Linux and
-  Spark hosts, so an agent can work to a spec overnight inside a VM it cannot
-  reach out of, and deposit finished work on a branch for review. Signed leases,
-  runtime attestation and capability tokens are built and validated; the
-  supervisor, the vsock transport and the host-side publisher are next.
-
-- **[prime-agent-cantus](https://github.com/evoclock/prime-agent-cantus).** Two
-  launch profiles for [Prime Agent](https://github.com/PrimeIntellect-ai/prime-agent)
-  so autonomous and interactive work share one harness, with a checkpoint before
-  risky actions and screening of results before they reach a model.
-
 - **[Methods-review extension](https://academic.oup.com/jamia/advance-article-abstract/doi/10.1093/jamia/ocag108/8709914?redirectedFrom=fulltext&login=false).** I am working on an extension to this paper that addresses the methodological approaches the authors did not pursue before making the claims in the original paper. I have invited the authors to collaborate on the extension and hope to be able to do so, but the work will be published regardless.
 
 - **Pi harness and Scientific Workbench.** I have been working on modifications
@@ -81,39 +70,6 @@ A live feed of what is actually in progress.
   is below.
 
 <img src="assets/pi-harness-atlas.png" alt="Pi harness captured by the System Atlas skill, showing work modes, lifecycle stages, roles, evidence and host boundaries" width="100%">
-
-- **[Circadian ChIP-seq reproducibility audit](https://github.com/evoclock/Circadian-ChIP-seq-reproducibility-audit).**
-  Wrapping up the audit work before the [DNABERT-2 fine-tune](https://github.com/evoclock/DNABERT-2-mouse-ft), which was postponed to next weekend.
-
-<details>
-<summary><strong>Current benchmark queue</strong></summary>
-
-This is the machine-facing eval queue. The date is intentionally not
-embedded in the heading; this table should be regenerated from the
-benchmark plan when the queue changes. When this project rotates out,
-this table can be archived as a dated snapshot and the same shape reused
-for the next active project. For the active narrative, see "Working on
-today" above.
-
-| benchmark / run | descriptor | role | metric | status |
-|---|---|---|---|---|
-| Fable operating-manual trap battery, Run 5 | granite-4.0-h-small-FP8 tier-X control/sham/manual run; 90-day retention trap; manual 16/24 vs control 8/24 and sham 7/24 | reasoning discipline / reviewer stressor | arm delta | done: H1 |
-| CRUXEval-O supplement cons@k | 184 code-tracing problems, repeated samples after prompt A/B | reviewer | cons@k + pass^k | running |
-| AIME 2024 + 2025 | 60-problem balanced reasoning subset across contamination-baseline and post-cutoff years | reviewer + planner | cons@k + pass^k | queued |
-| tool-eval-bench | Deterministic tool-use and multi-turn orchestration scenarios | planner | pass@k + pass^k / harness trials | planned |
-| LiveCodeBench v6 | Coding generation subset, rebuilt for stratification before publication | implementer | pass@k + pass^k | planned |
-| HumanEval+ | 164-problem code generation set with per-problem checkpoints | implementer | pass@k + pass^k | planned |
-| Terminal Bench hard subset | Hard terminal-agent tasks that test command planning, state tracking, recovery, and execution over a real shell workflow | planner finalist confirmation | pass@k + pass^k | planned |
-| HMMT Feb25 + GPQA | Hard competition-math and graduate science QA, run with and without tools to check whether reviewer finalists can verify difficult reasoning rather than only trace code | reviewer finalist confirmation | cons@k + pass^k | planned |
-
-Seat shorthand follows the way Hillstar-style multi-agent
-orchestrators divide work: **reviewer** reads and checks reasoning or
-code, **planner** chooses tools and orders work, and **implementer**
-writes code or concrete artifacts. The final public reports should
-separate selection runs from finalist-confirmation runs so expensive
-confirmation probes do not get mixed with the cheaper full-panel sweeps.
-
-</details>
 
 ## Fieldnotes: technical reports, experiments, evals and thoughts
 
@@ -142,6 +98,7 @@ Harnesses, gates, sandboxes, orchestration, and the products built on them.
   <sub>Qwen serving · 26 August 2026</sub><br>
   How I manage Qwen's tendency to go off on a long reasoning run, why completion limits are not enough, and where quantisation creates a second serving problem.
 
+
 - **[And the Simpsons Already Did It](https://evoclock.github.io/fieldnotes/articles/primitives-were-already-there.html)**<br>
   <sub>Standards and prior art · 21 August 2026</sub><br>
   Why AI infrastructure keeps rediscovering established primitives, and how to distinguish useful standardisation from inflated novelty claims.
@@ -166,6 +123,7 @@ Adapting models to a job, and serving them on hardware I own.
 - **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
   <sub>Qwen serving · 26 August 2026</sub><br>
   How I manage Qwen's tendency to go off on a long reasoning run, why completion limits are not enough, and where quantisation creates a second serving problem.
+
 
 - **[Building a 4B Local Implementer](https://evoclock.github.io/fieldnotes/publications/project-brief.html)**  
   <sub>LLM fine-tuning · 29 July 2026</sub>  
