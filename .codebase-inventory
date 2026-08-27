@@ -1,0 +1,4 @@
+# Executable implementation and test roots.
+reports/scripts
+scripts
+tests
