@@ -96,11 +96,15 @@ A live feed of what is actually in progress.
 </p>
 
 <details>
-<summary><strong>Agent systems</strong> (4)</summary>
+<summary><strong>Agent systems</strong> (5)</summary>
 
 Harnesses, gates, sandboxes, orchestration, and the products built on them.
 
 <img src="assets/Shibuichi-origami-removebg-preview.png" alt="" width="58" align="right">
+
+- **[Dispatching a Multi-Model Workforce from Anywhere](https://evoclock.github.io/fieldnotes/articles/herdr-natural-language-agent-automation.html)**  
+  <sub>Agent automation · 5 September 2026</sub>  
+  How the Agentic Driver extension set uses Herdr and Pi to route tasks by role, model and machine, while keeping persistent sessions within reach from a laptop, phone or remote terminal.
 
 - **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
   <sub>Qwen serving · 26 August 2026</sub><br>
