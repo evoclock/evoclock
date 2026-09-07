@@ -19,44 +19,56 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
 
 <table>
   <tr>
-    <td align="center" width="33%">
+    <td align="center" valign="top" width="25%">
       <img src="https://raw.githubusercontent.com/evoclock/nuthatch/main/assets/Nuthatch_bgrm.png" alt="Nuthatch" width="180"><br>
       <strong><a href="https://github.com/evoclock/nuthatch">nuthatch</a></strong>
     </td>
-    <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/evoclock/hillstar-orchestrator/main/assets/icons/Hillstar_icon_small.png" alt="Hillstar" width="180"><br>
-      <strong><a href="https://github.com/evoclock/hillstar-orchestrator">hillstar-orchestrator</a></strong>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/evoclock/testudo/main/assets/testudo_80s_font-trans-tight.png" alt="Testudo" width="180"><br>
-      <strong><a href="https://github.com/evoclock/testudo">testudo</a></strong>
+    <td valign="top" width="75%">
+      <ul>
+        <li><strong>Turn structured files into navigable knowledge bases</strong> for LLM agents</li>
+        <li><strong>Replace “embed and pray” with principled community structure</strong> built with a Bayesian SBM approach</li>
+        <li><strong>Find sub-communities other graph-RAG misses</strong> while reducing token costs by <strong>76–99%</strong></li>
+      </ul>
     </td>
   </tr>
   <tr>
+    <td align="center" valign="top">
+      <img src="https://raw.githubusercontent.com/evoclock/hillstar-orchestrator/main/assets/icons/Hillstar_icon_small.png" alt="Hillstar" width="180"><br>
+      <strong><a href="https://github.com/evoclock/hillstar-orchestrator">hillstar-orchestrator</a></strong>
+    </td>
     <td valign="top">
-
-- A knowledge-base layer for LLM-on-corpus workflows. Drop a paper corpus in, point an agent at it, get principled routing instead of "embed and pray"
-- Read-only MCP query surface
-- Schema-quarantined ingest with file-level validation
-- Routing via a proprietary degree-corrected SBM
-- Sub-community detection other graph-RAG lacks
-- Per-tool token-economy accounting (BM25, card-sum)
-
-</td>
+      <ul>
+        <li><strong>Provider-agnostic orchestration</strong> for reproducible research pipelines</li>
+        <li><strong>End-to-end audit trails</strong> for every step and lane</li>
+        <li><strong>Concurrent execution</strong> without sacrificing traceability</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <img src="https://raw.githubusercontent.com/evoclock/testudo/main/assets/testudo_80s_font-trans-tight.png" alt="Testudo" width="180"><br>
+      <strong><a href="https://github.com/evoclock/testudo">testudo</a></strong>
+    </td>
     <td valign="top">
-
-- A multi-provider LLM workflow orchestrator for research pipelines that need to be reproducible and auditable end-to-end
-- Audit trails on top of GenAI tooling
-- Per-step audit, lane-level concurrency
-
-</td>
+      <ul>
+        <li><strong>Sandboxed execution</strong> for LLM-generated code</li>
+        <li><strong>Hardened boundaries</strong> with sanitisation and MCP isolation</li>
+        <li><strong>Auditable runs</strong> inside containerised environments</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <img src="assets/agentic-driver-showcase.gif" alt="Animated Agentic Driver control vault" width="180"><br>
+      <strong><a href="https://github.com/evoclock/pi-agentic-driver">pi-agentic-driver</a></strong>
+    </td>
     <td valign="top">
-
-- A hardened agent runtime for executing LLM-generated code in a sandboxed, auditable container
-- Containerised end-to-end
-- Sanitisation, MCP isolation, audit logs
-
-</td>
+      <ul>
+        <li><strong>Spawn and manage agents</strong> with native Pi/Herdr integration</li>
+        <li><strong>Control scope creep and overengineering</strong> while preserving your context across sessions</li>
+        <li><strong>Run automated agents in monitored sandboxes</strong> with safeguards and a kill switch against escape attempts</li>
+      </ul>
+    </td>
   </tr>
 </table>
 
