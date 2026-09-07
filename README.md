@@ -11,7 +11,7 @@ smartest, more in which specific capabilities hold up under the
 conditions I actually run models in: life-science workloads,
 reproducibility of academic-publication pipelines, and the infrastructure that make it possible.
 
-[![View CV](https://img.shields.io/badge/view-CV-0f6e69?style=flat-square)](assets/J-Gamboa-CV.pdf)
+[![View CV](https://img.shields.io/badge/view-CV-0f6e69?style=flat-square)](assets/j-gamboa-resume.pdf)
 
 ![status: ongoing series](https://img.shields.io/badge/benchmark-series%20in%20progress-0f6e69?style=flat-square)
 
