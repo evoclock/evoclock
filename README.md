@@ -59,7 +59,7 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
   </tr>
   <tr>
     <td align="center" valign="middle">
-      <img src="assets/showcase-agentic-driver.gif" alt="Animated Agentic Driver control vault" width="180" height="180"><br>
+      <img src="assets/agentic-driver-sage.gif" alt="Animated Agentic Driver control vault" width="180"><br>
       <strong><a href="https://github.com/evoclock/pi-agentic-driver">pi-agentic-driver</a></strong>
     </td>
     <td valign="middle">
@@ -77,6 +77,14 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
 A live feed of what is actually in progress.
 
 - **[Agentic Driver](https://github.com/evoclock/pi-agentic-driver).** I am building a Pi extension set for dispatching a multi-model workforce by role, model, task and machine. It uses Herdr's native agent automation to create labelled panes or tabs, select models from the active Pi roster, communicate with workers, maintain useful warm sessions, and control persistent workspaces remotely over Tailscale and SSH. The latest fieldnote is **[Dispatching a Multi-Model Workforce from Anywhere](https://evoclock.github.io/fieldnotes/articles/herdr-natural-language-agent-automation.html)**.
+
+<p align="center">
+  <a href="https://evoclock.github.io/evoclock/showcase/agentic-driver/?state=idle&amp;loop=1&amp;debug=0">
+    <img src="assets/agentic-driver-sage.gif" alt="Sage Agentic Driver control vault cycling through review, dispatch, report and verification states" width="768">
+  </a>
+</p>
+
+<p align="center"><sub>Animated preview — click through to the interactive control vault.</sub></p>
 
 - **[Methods-review extension](https://academic.oup.com/jamia/advance-article-abstract/doi/10.1093/jamia/ocag108/8709914?redirectedFrom=fulltext&login=false).** I am working on an extension to this paper that addresses the methodological approaches the authors did not pursue before making the claims in the original paper. I have invited the authors to collaborate on the extension and hope to be able to do so, but the work will be published regardless.
 
