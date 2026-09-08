@@ -19,11 +19,11 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
 
 <table>
   <tr>
-    <td align="center" valign="top" width="25%">
-      <img src="https://raw.githubusercontent.com/evoclock/nuthatch/main/assets/Nuthatch_bgrm.png" alt="Nuthatch" width="180"><br>
+    <td align="center" valign="middle" width="25%">
+      <img src="assets/showcase-nuthatch.png" alt="Nuthatch" width="180" height="180"><br>
       <strong><a href="https://github.com/evoclock/nuthatch">nuthatch</a></strong>
     </td>
-    <td valign="top" width="75%">
+    <td valign="middle" width="75%">
       <ul>
         <li><strong>Turn structured files into navigable knowledge bases</strong> for LLM agents</li>
         <li><strong>Replace “embed and pray” with principled community structure</strong> built with a Bayesian SBM approach</li>
@@ -32,11 +32,11 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
     </td>
   </tr>
   <tr>
-    <td align="center" valign="top">
-      <img src="https://raw.githubusercontent.com/evoclock/hillstar-orchestrator/main/assets/icons/Hillstar_icon_small.png" alt="Hillstar" width="180"><br>
+    <td align="center" valign="middle">
+      <img src="assets/showcase-hillstar.png" alt="Hillstar" width="180" height="180"><br>
       <strong><a href="https://github.com/evoclock/hillstar-orchestrator">hillstar-orchestrator</a></strong>
     </td>
-    <td valign="top">
+    <td valign="middle">
       <ul>
         <li><strong>Provider-agnostic orchestration</strong> for reproducible research pipelines</li>
         <li><strong>End-to-end audit trails</strong> for every step and lane</li>
@@ -45,11 +45,11 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
     </td>
   </tr>
   <tr>
-    <td align="center" valign="top">
-      <img src="https://raw.githubusercontent.com/evoclock/testudo/main/assets/testudo_80s_font-trans-tight.png" alt="Testudo" width="180"><br>
+    <td align="center" valign="middle">
+      <img src="assets/showcase-testudo.png" alt="Testudo" width="180" height="180"><br>
       <strong><a href="https://github.com/evoclock/testudo">testudo</a></strong>
     </td>
-    <td valign="top">
+    <td valign="middle">
       <ul>
         <li><strong>Sandboxed execution</strong> for LLM-generated code</li>
         <li><strong>Hardened boundaries</strong> with sanitisation and MCP isolation</li>
@@ -58,11 +58,11 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
     </td>
   </tr>
   <tr>
-    <td align="center" valign="top">
-      <img src="assets/agentic-driver-showcase.gif" alt="Animated Agentic Driver control vault" width="180"><br>
+    <td align="center" valign="middle">
+      <img src="assets/showcase-agentic-driver.gif" alt="Animated Agentic Driver control vault" width="180" height="180"><br>
       <strong><a href="https://github.com/evoclock/pi-agentic-driver">pi-agentic-driver</a></strong>
     </td>
-    <td valign="top">
+    <td valign="middle">
       <ul>
         <li><strong>Spawn and manage agents</strong> with native Pi/Herdr integration</li>
         <li><strong>Control scope creep and overengineering</strong> while preserving your context across sessions</li>
