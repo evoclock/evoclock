@@ -59,7 +59,7 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
   </tr>
   <tr>
     <td align="center" valign="middle">
-      <img src="assets/agentic-driver-sage.gif" alt="Animated sage Agentic Driver control vault" width="180" height="180"><br>
+      <img src="assets/showcase-agentic-driver.gif" alt="Animated Agentic Driver control vault" width="180" height="180"><br>
       <strong><a href="https://github.com/evoclock/pi-agentic-driver">pi-agentic-driver</a></strong>
     </td>
     <td valign="middle">
@@ -76,18 +76,16 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
 
 A live feed of what is actually in progress.
 
-- **[Agentic Driver](https://github.com/evoclock/pi-agentic-driver).** Agents that do the work while the harness keeps the receipts. Nine extensions turn Pi into a control plane for delegated work: advisory review before code is written, role-labelled workers in labelled panes and tabs, bounded autonomous journeys, a governed task board that records who authorised every change, capacity scheduling under an explicit policy, and a microVM killswitch proven live. Explore the whole control plane in the **[interactive System Atlas](https://evoclock.github.io/fieldnotes/articles/nine-extensions-later.html)**. Fieldnote: **[Nine Extensions Later](https://evoclock.github.io/fieldnotes/articles/nine-extensions-later.html)**.
-
-<img src="assets/pi-harness-atlas-journey.gif" alt="Animated System Atlas of the pi-agentic-driver control plane, walking one piece of work from instruction to completion" width="100%">
-
-- **[Testudo](https://github.com/evoclock/testudo).** Your agents' work, contained and provable. Declare what an agent may do; Testudo runs it inside a governed microVM or native container, sanitises every byte crossing the boundary, and hands you cryptographic proof of exactly what happened: receipts, artifacts, and an audit trail. Now shipping a one-command local install and seat control with consent gates.
+- **[Agentic Driver](https://github.com/evoclock/pi-agentic-driver).** I am building a Pi extension set for dispatching a multi-model workforce by role, model, task and machine. It uses Herdr's native agent automation to create labelled panes or tabs, select models from the active Pi roster, communicate with workers, maintain useful warm sessions, and control persistent workspaces remotely over Tailscale and SSH. The latest fieldnote is **[Dispatching a Multi-Model Workforce from Anywhere](https://evoclock.github.io/fieldnotes/articles/herdr-natural-language-agent-automation.html)**.
 
 - **[Methods-review extension](https://academic.oup.com/jamia/advance-article-abstract/doi/10.1093/jamia/ocag108/8709914?redirectedFrom=fulltext&login=false).** I am working on an extension to this paper that addresses the methodological approaches the authors did not pursue before making the claims in the original paper. I have invited the authors to collaborate on the extension and hope to be able to do so, but the work will be published regardless.
 
 - **Pi harness and Scientific Workbench.** I have been working on modifications
-  to my Pi harness and continuing work on my Scientific Workbench.
+  to my Pi harness and continuing work on my Scientific Workbench. The harness,
+  as captured by the [System Atlas skill](https://github.com/inkboard/system-atlas),
+  is below.
 
-- **Scientific Research Workbench.** The research-facing application of the same workforce principles keeps getting sharper: a rebuilt CodeMirror 6 editor with extension-based highlighting, codesign-verified one-step macOS install, and a hardened knowledge-base integration. It will soon open as an invite-only pilot for a few research labs. If you are a Masters or PhD student and want to trial it, give me a shout and I will see what we can do.
+<img src="assets/pi-harness-atlas.png" alt="Pi harness captured by the System Atlas skill, showing work modes, lifecycle stages, roles, evidence and host boundaries" width="100%">
 
 - **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
   <sub>Qwen serving · 26 August 2026</sub><br>
@@ -110,7 +108,7 @@ A live feed of what is actually in progress.
 </p>
 
 <details>
-<summary><strong>Agent systems</strong> (6)</summary>
+<summary><strong>Agent systems</strong> (5)</summary>
 
 Harnesses, gates, sandboxes, orchestration, and the products built on them.
 
@@ -120,20 +118,13 @@ Harnesses, gates, sandboxes, orchestration, and the products built on them.
   <sub>Agent automation · 5 September 2026</sub>  
   How the Agentic Driver extension set uses Herdr and Pi to route tasks by role, model and machine, while keeping persistent sessions within reach from a laptop, phone or remote terminal.
 
-- **[Nine Extensions Later: Notes from Building a Pi Harness](https://evoclock.github.io/fieldnotes/articles/nine-extensions-later.html)**  
-  <sub>Harness design · 18 September 2026</sub>  
-  What happens when you stop accepting the harness you are given and start building the one you want: nine extensions, a governed task board, and a decision layer on the way.
-
-- **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**  
-  <sub>Qwen serving · 26 August 2026</sub>  
+- **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
+  <sub>Qwen serving · 26 August 2026</sub><br>
   How I manage Qwen's tendency to go off on a long reasoning run, why completion limits are not enough, and where quantisation creates a second serving problem.
 
-- **[Nine Extensions Later: Notes from Building a Pi Harness](https://evoclock.github.io/fieldnotes/articles/nine-extensions-later.html)**  
-  <sub>Harness design · 18 September 2026</sub>  
-  What happens when you stop accepting the harness you are given and start building the one you want: nine extensions, a governed task board, and a decision layer on the way.
 
-- **[And the Simpsons Already Did It](https://evoclock.github.io/fieldnotes/articles/primitives-were-already-there.html)**  
-  <sub>Standards and prior art · 21 August 2026</sub>  
+- **[And the Simpsons Already Did It](https://evoclock.github.io/fieldnotes/articles/primitives-were-already-there.html)**<br>
+  <sub>Standards and prior art · 21 August 2026</sub><br>
   Why AI infrastructure keeps rediscovering established primitives, and how to distinguish useful standardisation from inflated novelty claims.
 
 - **[Memory management for LLM-on-corpus](https://evoclock.github.io/fieldnotes/notes/memory-management.html)**  
@@ -153,9 +144,10 @@ Adapting models to a job, and serving them on hardware I own.
 
 <img src="assets/Shibuichi-origami-removebg-preview.png" alt="" width="58" align="right">
 
-- **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**  
-  <sub>Qwen serving · 26 August 2026</sub>  
+- **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
+  <sub>Qwen serving · 26 August 2026</sub><br>
   How I manage Qwen's tendency to go off on a long reasoning run, why completion limits are not enough, and where quantisation creates a second serving problem.
+
 
 - **[Building a 4B Local Implementer](https://evoclock.github.io/fieldnotes/publications/project-brief.html)**  
   <sub>LLM fine-tuning · 29 July 2026</sub>  
