@@ -20,7 +20,7 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
 <table>
   <tr>
     <td align="center" valign="middle" width="25%">
-      <img src="assets/showcase-nuthatch.png" alt="Nuthatch" width="180" height="180"><br>
+      <img src="assets/Nuthatch_bgrm.png" alt="Nuthatch" width="180" height="180"><br>
       <strong><a href="https://github.com/evoclock/nuthatch">nuthatch</a></strong>
     </td>
     <td valign="middle" width="75%">
@@ -47,7 +47,7 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
   <tr>
     <td align="center" valign="middle">
       <img src="assets/showcase-testudo.gif?v=2" alt="Testudo" width="180" height="180"><br>
-      <img src="assets/showcase-testudo-80s.png?v=2" alt="Testudo 80s logo" width="120"><br>
+      <img src="assets/testudo_80s_font.png?v=2" alt="Testudo 80s logo" width="120"><br>
       <strong><a href="https://github.com/evoclock/testudo">testudo</a></strong>
     </td>
     <td valign="middle">
