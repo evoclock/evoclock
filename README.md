@@ -33,7 +33,7 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
   </tr>
   <tr>
     <td align="center" valign="middle">
-      <img src="assets/showcase-hillstar.png" alt="Hillstar" width="180" height="180"><br>
+      <img src="assets/showcase-hillstar.png?v=2" alt="Hillstar" width="180" height="180"><br>
       <strong><a href="https://github.com/evoclock/hillstar-orchestrator">hillstar-orchestrator</a></strong>
     </td>
     <td valign="middle">
@@ -46,7 +46,8 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
   </tr>
   <tr>
     <td align="center" valign="middle">
-      <img src="assets/showcase-testudo.png" alt="Testudo" width="180" height="180"><br>
+      <img src="assets/showcase-testudo.gif?v=2" alt="Testudo" width="180" height="180"><br>
+      <img src="assets/showcase-testudo-80s.png?v=2" alt="Testudo 80s logo" width="120"><br>
       <strong><a href="https://github.com/evoclock/testudo">testudo</a></strong>
     </td>
     <td valign="middle">
