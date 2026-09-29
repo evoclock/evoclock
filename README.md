@@ -1,8 +1,8 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/readme-banner-dark.gif">
-    <source media="(prefers-color-scheme: light)" srcset="assets/readme-banner.gif">
-    <img src="assets/readme-banner.gif" alt="Origami bird attractor banner" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/readme-banner-dark.webp">
+    <source media="(prefers-color-scheme: light)" srcset="assets/readme-banner.webp">
+    <img src="assets/readme-banner.webp" alt="Origami bird attractor banner" width="100%">
   </picture>
 </p>
 
