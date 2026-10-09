@@ -76,20 +76,21 @@ reproducibility of academic-publication pipelines, and the infrastructure that m
 
 A live feed of what is actually in progress.
 
-- **[Agentic Driver](https://github.com/evoclock/pi-agentic-driver).** I am building a Pi extension set for dispatching a multi-model workforce by role, model, task and machine. It uses Herdr's native agent automation to create labelled panes or tabs, select models from the active Pi roster, communicate with workers, maintain useful warm sessions, and control persistent workspaces remotely over Tailscale and SSH. The latest fieldnote is **[Dispatching a Multi-Model Workforce from Anywhere](https://evoclock.github.io/fieldnotes/articles/herdr-natural-language-agent-automation.html)**.
+- **[Is fast decoding the be all and end all?](https://evoclock.github.io/fieldnotes/articles/is-fast-decoding-the-be-all-and-end-all.html)**<br>
+  <sub>GLM-5.3-Flash serving · 9 October 2026</sub><br>
+  Four serving recipes for GLM-5.3-Flash on two DGX Sparks: TensorFold EXL3 with fc5:0.3, fnc7:0.3 and MTP drafting, and SparkGLM NVFP4. The recipe that answers fastest is not the one that generates fastest, and none of the four escapes the constraints that matter for real agent work. The explorable benchmark report is embedded in the entry.
 
-- **[Methods-review extension](https://academic.oup.com/jamia/advance-article-abstract/doi/10.1093/jamia/ocag108/8709914?redirectedFrom=fulltext&login=false).** I am working on an extension to this paper that addresses the methodological approaches the authors did not pursue before making the claims in the original paper. I have invited the authors to collaborate on the extension and hope to be able to do so, but the work will be published regardless.
+- **A single source for all the tools I have been building.** Vogelkop has enabled me to produce the entirety of my PhD doctoral thesis work, and right now it is helping me build Tessellate to test a different kind of application, building products of a different type (not academic publications), and helping me debug along the way. In parallel I have been doing a little bit of frontend work, you will have noticed my banner has changed from a static De Jong attractor to an animated De Jong transitioning through to a different attractor, that's work that will end in the website where all of the tooling I have built will live. Nuthatch has its own product page now and so does Tessellate. I have some big plans for Tessellate as an idea generator but that is as much as I am ready to say right now. A lot more to come soon enough.
 
-- **Pi harness and Scientific Workbench.** I have been working on modifications
-  to my Pi harness and continuing work on my Scientific Workbench. The harness,
-  as captured by the [System Atlas skill](https://github.com/inkboard/system-atlas),
-  is below.
+  <img src="assets/nuthatch-frontend-preview.gif" alt="Nuthatch frontend: hero and pipeline pages" width="100%">
 
-<img src="assets/pi-harness-atlas.png" alt="Pi harness captured by the System Atlas skill, showing work modes, lifecycle stages, roles, evidence and host boundaries" width="100%">
+  **Nuthatch**, as a reminder, is the tool you run your own collection of knowledge on: bring papers, patents, reports, notes, or any structured document, run the stages yourself or with an agent, via vogelkop or the command line and serve the resulting graph to your agents over MCP, with an Obsidian vault opening alongside for visualisation and consuming your curated knowledge base that isn't built on LLM-driven hallucination but graphRAG extraction of your documents. I have built a clean-room implementation of a Bayesian stochastic block model engine that is more permissive than the original tool and just as performant, which beats every typical network graph method in common use (Leiden and Louvain primarily). I will cover a little more on this on a different blog entry.
 
-- **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
-  <sub>Qwen serving · 26 August 2026</sub><br>
-  How I manage Qwen's tendency to go off on a long reasoning run, why completion limits are not enough, and where quantisation creates a second serving problem.
+  What does all this mean to you? your knowledge base is built on ground truth, not LLM interpretation, and the relationships that come from the graph are tested more rigorously than other "second brain" methods out there give you, to boot, and this is a property of these systems, you get to save between 76% and 99% of all tokens you would otherwise spend if you were to query the information in the graph network.
+
+  But how are Tessellate and Nuthatch different? Tessellate is designed to be very easy to run, you select the categories from a given journal's taxonomy and under the hood it goes and indexes everything published in that journal in the last week, it currently uses Jev to supplement much of the classification and then uses Budgie, a dual purpose reference capture and management tool I built which can retrieve papers from your chrome browser directly to your workspace, insert them into your manuscript draft, or in this case it can process any papers that failed the classification process with OpenAlex and Jev. Downstream it goes through the same pipeline as nuthatch but you are not expected to troubleshoot anything, Tessellate tells you if something failed to be classified and why and it will suggest what you may do about it. The net result is that you can query what Tessellate maintains for you automatically and your agent can learn at the same pace as you do about new developments in the fields that interest you.
+
+  <img src="assets/tessellate-frontend-preview.gif" alt="Tessellate frontend: hero and discovery pages" width="100%">
 
 ## Fieldnotes: technical reports, experiments, evals and thoughts
 
@@ -138,16 +139,19 @@ Harnesses, gates, sandboxes, orchestration, and the products built on them.
 </details>
 
 <details>
-<summary><strong>Models</strong> (5)</summary>
+<summary><strong>Models</strong> (6)</summary>
 
 Adapting models to a job, and serving them on hardware I own.
 
 <img src="assets/Shibuichi-origami-removebg-preview.png" alt="" width="58" align="right">
 
+- **[Is fast decoding the be all and end all?](https://evoclock.github.io/fieldnotes/articles/is-fast-decoding-the-be-all-and-end-all.html)**  
+  <sub>GLM-5.3-Flash serving · 9 October 2026</sub>  
+  Four serving recipes for GLM-5.3-Flash on two DGX Sparks. The recipe that answers fastest is not the one that generates fastest, and none of the four escapes the constraints that matter for real agent work.
+
 - **[Wrangling Qwen's Long Thinking Runs](https://evoclock.github.io/fieldnotes/articles/wrangling-qwens-long-thinking-runs.html)**<br>
   <sub>Qwen serving · 26 August 2026</sub><br>
   How I manage Qwen's tendency to go off on a long reasoning run, why completion limits are not enough, and where quantisation creates a second serving problem.
-
 
 - **[Building a 4B Local Implementer](https://evoclock.github.io/fieldnotes/publications/project-brief.html)**  
   <sub>LLM fine-tuning · 29 July 2026</sub>  
